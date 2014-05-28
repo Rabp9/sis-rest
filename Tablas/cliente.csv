@@ -1,0 +1,3 @@
+idCliente,nombres,apellidoPaterno,apellidoMaterno,telefono,correo,direccion,estado
+C0001,Guillermo,Juarez,Linares,95354605,guillermo@hotmail.com,"Jr. Amadeus 205",1
+C0002,Claudio,Fernandez,Reyes,975624605,cfernandez@gmail.com,"Jr. Costa Rica 412",1

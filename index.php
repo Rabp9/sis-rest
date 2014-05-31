@@ -12,38 +12,38 @@
     </head>
     <body>
         <div data-role="page" id="homePage" data-theme="a">
-            <div data-role="header" data-position="fixed">
+            <div data-role="header">
                 <h1>Bienvenido a SIS-REST</h1>
             </div>
             <div data-role="content">
-                <div id="dashboard">
-                    <a href="View/Mantenimiento/" class="dashboard_icon">
-                        <figure>
-                            <img src="resources/img/icon-mantenimiento2.jpg"/>
-                            <figcaption>Mantenimiento</figcaption>
-                        </figure>
-                    </a>
-                    <a href="View/RegistrarPedido/" class="dashboard_icon">
-                        <figure>
-                            <img src="resources/img/icon-pedidos2.jpg"/>
-                            <figcaption>Pedido</figcaption>
-                        </figure>
-                    </a>
-                    <a href="View/Reservaciones/" class="dashboard_icon">
-                        <figure>
-                            <img src="resources/img/icon-reservaciones2.jpg"/>
-                            <figcaption>Reservaciones</figcaption>
-                        </figure>
-                    </a>
-                    <a href="View/Reportes/" class="dashboard_icon">
-                        <figure>
-                            <img src="resources/img/icon-reportes2.jpg"/>
-                            <figcaption>Reportes</figcaption>
-                        </figure>
-                    </a>
-                </div>
+                <ul data-role="listview" data-inset="true">
+                    <li>
+                        <a href="View/Mantenimiento/">
+                            <img src="resources/img/icon-mantenimiento2.jpg">
+                            Mantenimiento
+                        </a>
+                    </li>
+                    <li>
+                        <a href="View/RegistrarPedido/">
+                            <img src="resources/img/icon-pedidos2.jpg">
+                            Pedidos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="View/Reservaciones/">
+                            <img src="resources/img/icon-reservaciones2.jpg">
+                            Reservaciones
+                        </a>
+                    </li>
+                    <li>
+                        <a href="View/Reportes/">
+                            <img src="resources/img/icon-reportes2.jpg">
+                            Reportes
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <div data-role="footer" data-position="fixed">
+            <div data-role="footer">
                 <h4>Copyright SIS-REST &copy; 2014</h4>
             </div>
         </div>

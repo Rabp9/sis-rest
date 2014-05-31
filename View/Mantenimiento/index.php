@@ -17,40 +17,28 @@
                 <h1>Mantenimiento SIS-REST</h1>
             </div>
             <div data-role="content">
-                <div id="dashboard">
-                    <a href="Cliente/ListaCliente.php" class="dashboard_icon">
-                        <figure>
-                            <img src="../../resources/img/icon-cliente.jpg"/>
-                            <figcaption>Cliente</figcaption>
-                        </figure>
-                    </a>
-                    <a href="Plato/ListaPlato.php" class="dashboard_icon">
-                        <figure>
-                            <img src="../../resources/img/icon-platos2.jpg"/>
-                            <figcaption>Plato</figcaption>
-                        </figure>
-                    </a>
-                    <a href="Mesa//ListaMesa.php" class="dashboard_icon">
-                        <figure>
-                            <img src="../../resources/img/icon-mesa2.png"/>
-                            <figcaption>Mesa</figcaption>
-                        </figure>
-                    </a>
-                    <a href="" class="dashboard_icon">
-                        <figure>
-                            <img src="resources/img/icon-mantenimiento2.jpg"/>
-                            <figcaption>Manteniminto</figcaption>
-                        </figure>
-                    </a>
-                    <a href="" class="dashboard_icon">
-                        <figure>
-                            <img src="resources/img/icon-mantenimiento2.jpg"/>
-                            <figcaption>Manteniminto</figcaption>
-                       </figure>
-                    </a>
-                </div>
+                <ul data-role="listview" data-inset="true">
+                    <li>
+                        <a href="Cliente/ListaCliente.php">
+                            <img src="../../resources/img/icon-cliente.jpg">
+                            Cliente
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Plato/ListaPlato.php">
+                            <img src="../../resources/img/icon-platos2.jpg">
+                            Plato
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Mesa//ListaMesa.php">
+                            <img src="../../resources/img/icon-mesa2.png">
+                            Mesa
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <div data-role="footer" data-position="fixed">
+            <div data-role="footer">
                 <h4>Copyright SIS-REST &copy; 2014</h4>
             </div>
         </div>

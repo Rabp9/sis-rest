@@ -17,36 +17,50 @@
     <body>
         <div data-role="page" id="registroCliente" data-add-back-btn="true" data-back-btn-text="Atrás" data-theme="a">
             <div data-role="header">
-                <h1>Registro Cliente</h1>
+                <?php
+                    if(is_array($cliente)) $header = "Editar";
+                    else $header = "Nuevo";
+                ?>
+                <h1><?php echo $header; ?> Cliente</h1>
             </div>
             <div data-role="content">
                 <form action="../../../Controller/MantenimientoClienteController.php" method="post" data-ajax="false">
+                    <?php if(is_array($cliente)) { ?>
+                    <div data-role="fieldcontain">
+                        <label for="txtCodigo">Código:</label>
+                        <input type="text" name="idCliente" id="txtCodigo" value="<?php if(is_array($cliente)) echo $cliente["idCliente"]; ?>" readonly />
+                    </div>
+                    <?php } ?>
                     <div data-role="fieldcontain">
                         <label for="txtNombres">Nombres:</label>
-                        <input type="text" name="nombres" id="txtNombres" value="" />
+                        <input type="text" name="nombres" id="txtNombres" value="<?php if(is_array($cliente)) echo $cliente["nombres"]; ?>" />
                     </div>
                     <div data-role="fieldcontain">
                         <label for="txtApellidoPaterno">Apellido Paterno:</label>
-                        <input type="text" name="apellidoPaterno" id="txtApellidoPaterno" value="" />
+                        <input type="text" name="apellidoPaterno" id="txtApellidoPaterno" value="<?php if(is_array($cliente)) echo $cliente["apellidoPaterno"]; ?>" />
                     </div>
                     <div data-role="fieldcontain">
                         <label for="txtApellidoMaterno">Apellido Materno:</label>
-                        <input type="text" name="apellidoMaterno" id="txtApellidoMaterno" value="" />
+                        <input type="text" name="apellidoMaterno" id="txtApellidoMaterno" value="<?php if(is_array($cliente)) echo $cliente["apellidoMaterno"]; ?>" />
                     </div>
                     <div data-role="fieldcontain">
                         <label for="txtTelefono">Teléfono:</label>
-                        <input type="text" name="telefono" id="txtTelefono" value="" />
+                        <input type="text" name="telefono" id="txtTelefono" value="<?php if(is_array($cliente)) echo $cliente["telefono"]; ?>" />
                     </div>
                     <div data-role="fieldcontain">
-                        <label for="txtCorreo">Correo:</label>
-                        <input type="email" name="correo" id="txtCorreo" value="" />
+                        <label for="txtEmail">Email:</label>
+                        <input type="email" name="email" id="txtEmail" value="<?php if(is_array($cliente)) echo $cliente["email"]; ?>" />
                     </div>
                     <div data-role="fieldcontain">
                         <label for="txtaDireccion">Dirección:</label>	
-                        <textarea rows="8" name="direccion" id="txtaDireccion"></textarea>
+                        <textarea rows="8" name="direccion" id="txtaDireccion"><?php if(is_array($cliente)) echo $cliente["direccion"]; ?></textarea>
                     </div>
                     <div data-role="fieldcontain">
-                        <input type="submit" name="submit" value="Registrar" />
+                        <?php
+                            if(is_array($cliente)) $opcion = "Modificar";
+                            else $opcion = "Registrar";
+                        ?>
+                        <input type="submit" name="submit" value="<?php echo $opcion; ?>" />
                     </div>
                 </form>
             </div>

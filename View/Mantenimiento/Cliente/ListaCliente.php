@@ -28,8 +28,8 @@
                             <th>ID</th>
                             <th>Nombre Completo</th>
                             <th>Teléfono</th>
-                            <th>Correo</th>
                             <th>Dirección</th>
+                            <th>Email</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,10 +42,10 @@
                         ?>
                         <tr>
                             <td><?php echo $cliente["idCliente"]; ?></td>
-                            <td><a href="RegistroCliente.php?<?php echo $cliente["idCliente"]; ?>"><?php echo $cliente["nombreCompleto"]; ?></a></td>
-                            <td><?php echo $cliente["telefono"]; ?></td>
-                            <td><?php echo $cliente["correo"]; ?></td>
+                            <td><a href="RegistroCliente.php?idCliente=<?php echo $cliente["idCliente"]; ?>"><?php echo $cliente["nombreCompleto"]; ?></a></td>
+                            <td><a href="tel:<?php echo $cliente["telefono"]; ?>"><?php echo $cliente["telefono"]; ?></a></td>
                             <td><?php echo $cliente["direccion"]; ?></td>
+                            <td><a href="mailto:<?php echo $cliente["email"]; ?>"><?php echo $cliente["email"]; ?></a></td>
                         </tr>
                         <?php
                             }
@@ -53,9 +53,9 @@
                         ?>
                     </tbody>
                 </table>
-                <a href="RegistroCliente.php"><button>Nuevo Cliente</button></a>
+                <a href="RegistroCliente.php?accion=nuevo"><button>Nuevo Cliente</button></a>
             </div>
-            <div data-role="footer" data-position="fixed" data-fullscreen="true">
+            <div data-role="footer" data-fullscreen="true">
                 <h4>Copyright SIS-REST &copy; 2014</h4>
             </div>
         </div>

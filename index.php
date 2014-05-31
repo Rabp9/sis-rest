@@ -19,13 +19,13 @@
                 <ul data-role="listview" data-inset="true">
                     <li>
                         <a href="View/Mantenimiento/">
-                            <img src="resources/img/icon-mantenimiento2.jpg">
+                            <img src="resources/img/icon-mantenimiento3.png">
                             Mantenimiento
                         </a>
                     </li>
                     <li>
                         <a href="View/RegistrarPedido/">
-                            <img src="resources/img/icon-pedidos2.jpg">
+                            <img src="resources/img/icon-pedidos3.png">
                             Pedidos
                         </a>
                     </li>

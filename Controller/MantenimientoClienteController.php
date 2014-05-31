@@ -16,12 +16,27 @@
         $cliente["apellidoPaterno"] = $_POST["apellidoPaterno"];
         $cliente["apellidoMaterno"] = $_POST["apellidoMaterno"];
         $cliente["telefono"] = $_POST["telefono"];
-        $cliente["correo"] = $_POST["correo"];
         $cliente["direccion"] = $_POST["direccion"];
+        $cliente["email"] = $_POST["email"];
         registrarNuevoCliente($cliente);
         header("Location: ../View/Mantenimiento/Cliente/ListaCliente.php");
     }
+    
     if($submit == "editar") {
-        $cliente = getCliente();
+        $idCliente = $_GET["idCliente"];
+        $cliente = getCliente($idCliente);
+    }
+    
+    if($submit == "Modificar") {
+        $cliente["idCliente"] = $_POST["idCliente"];
+        $cliente["nombres"] = $_POST["nombres"];
+        $cliente["apellidoPaterno"] = $_POST["apellidoPaterno"];
+        $cliente["apellidoMaterno"] = $_POST["apellidoMaterno"];
+        $cliente["telefono"] = $_POST["telefono"];
+        $cliente["direccion"] = $_POST["direccion"];
+        $cliente["email"] = $_POST["email"];
+        var_dump($cliente);
+        registrarEditarCliente($cliente);
+        header("Location: ../View/Mantenimiento/Cliente/ListaCliente.php");
     }
 ?>

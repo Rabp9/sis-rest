@@ -68,5 +68,9 @@
                 <h4>Copyright SIS-REST &copy; 2014</h4>
             </div>
         </div>
+
+        <div data-role="popup" id="popupBasic">
+            <p>This is a completely basic popup, no options set.<p>
+        </div>
     </body>
 </html>

@@ -30,6 +30,7 @@
         global $dbh;
         try {
             // Inicio de la transacción
+            $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $dbh->setAttribute(PDO::ATTR_AUTOCOMMIT, FALSE);
             $dbh->beginTransaction();
             // Contar cantidad de clientes
@@ -51,8 +52,10 @@
             $rs->bindParam(":email", $cliente["email"]);
             $rs->bindParam(":estado", $estado); // activo 
             $rs->execute();
-            $dbh->commit();
+            $algo = $dbh->commit();
+            return $idCliente;
         } catch (PDOException $ex) {
+            return 0;
             $dbh->rollBack();
         }
     }
@@ -61,6 +64,7 @@
         global $dbh;
         try {
             // Inicio de la transacción
+            $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $dbh->setAttribute(PDO::ATTR_AUTOCOMMIT, FALSE);
             $dbh->beginTransaction();
             // registrar edición de cliente
@@ -74,7 +78,28 @@
             $rs->bindParam(":email", $cliente["email"]);
             $rs->execute();
             $dbh->commit();
+            return $cliente["idCliente"];
         } catch (PDOException $ex) {
+            return 0;
+            $dbh->rollBack();
+        }
+    }
+    
+    function eliminarCliente($idCliente) {
+        global $dbh;
+        try {
+            // Inicio de la transacción
+            $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $dbh->setAttribute(PDO::ATTR_AUTOCOMMIT, FALSE);
+            $dbh->beginTransaction();
+            // eliminar cliente
+            $rs = $dbh->prepare("UPDATE Cliente SET estado = 2 WHERE idCliente=:idCliente");
+            $rs->bindParam(":idCliente", $idCliente);
+            $rs->execute();
+            $dbh->commit();
+            return $idCliente;
+        } catch (PDOException $ex) {
+            return 0;
             $dbh->rollBack();
         }
     }

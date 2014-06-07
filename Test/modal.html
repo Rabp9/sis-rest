@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+        <title>SIS-REST</title>
+        <link rel="stylesheet" type="text/css" href="../resources/css/los_patos.min.css" />
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile.structure-1.3.2.min.css" />
+        <link rel="stylesheet" type="text/css" href="../resources/css/dashborad.css"/>
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#ancla").click(function() {
+                   $.mobile.changePage( "#dialogo", { role: "dialog" } );
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div data-role="page" id="homePage" data-theme="a">
+            <div data-role="header" data-position="fixed">
+                <h1>Bienvenido a SIS-REST</h1>
+            </div>
+            <div data-role="content">
+                <p>Probando un dialog</p>
+                <a href="#" id="ancla">dialog</a>
+            </div>
+            <div data-role="footer" data-position="fixed">
+                <h4>Copyright SIS-REST &copy; 2014</h4>
+            </div>
+        </div>
+        
+        <div data-role="dialog" id="dialogo">
+            <div data-role="header">
+                <h1>Header</h1>
+            </div>
+            <div data-role="content">
+adasdasasd
+            </div>
+            <div data-role="footer">
+                <h1>Footer</h1>        
+            </div>
+        </div>​
+    </body>
+</html>

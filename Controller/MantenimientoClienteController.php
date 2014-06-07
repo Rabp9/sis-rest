@@ -4,8 +4,12 @@
     require_once(__ROOT__.'/DAO/VwClienteDAO.php');
     require_once(__ROOT__.'/DAO/ClienteDAO.php');
     
-    if(!empty($_POST))
+    if(isset($_GET["submit"]))
+        $submit = $_GET["submit"];
+    
+    elseif(!empty($_POST))
         $submit = $_POST["submit"];
+    
     
     if($submit == "lista") {
         $clientes = getVwClientes();
@@ -18,8 +22,10 @@
         $cliente["telefono"] = $_POST["telefono"];
         $cliente["direccion"] = $_POST["direccion"];
         $cliente["email"] = $_POST["email"];
-        registrarNuevoCliente($cliente);
-        header("Location: ../View/Mantenimiento/Cliente/ListaCliente.php");
+        if($id = registrarNuevoCliente($cliente))
+            header("Location: ../View/Mantenimiento/Cliente/ListaCliente.php?rpta=correcto&mensaje=nuevo&id=" . $id);
+        else
+            header("Location: ../View/Mantenimiento/Cliente/ListaCliente.php?rpta=incorrecto&mensaje=nuevo");
     }
     
     if($submit == "editar") {
@@ -35,8 +41,18 @@
         $cliente["telefono"] = $_POST["telefono"];
         $cliente["direccion"] = $_POST["direccion"];
         $cliente["email"] = $_POST["email"];
-        var_dump($cliente);
-        registrarEditarCliente($cliente);
-        header("Location: ../View/Mantenimiento/Cliente/ListaCliente.php");
+        $id = $cliente["idCliente"];
+        if(registrarEditarCliente($cliente))
+            header("Location: ../View/Mantenimiento/Cliente/ListaCliente.php?rpta=correcto&mensaje=editar&id=" . $id);
+        else
+            header("Location: ../View/Mantenimiento/Cliente/ListaCliente.php?rpta=incorrecto&mensaje=editar&id=" . $id);
+    }
+    
+    if($submit == "Eliminar") {
+        $idCliente = $_GET["idCliente"];
+        if($id = eliminarCliente($idCliente))
+            header("Location: ../View/Mantenimiento/Cliente/ListaCliente.php?rpta=correcto&mensaje=eliminar&id=" . $idCliente);
+        else
+            header("Location: ../View/Mantenimiento/Cliente/ListaCliente.php?rpta=incorrecto&mensaje=eliminar&id=" . $idCliente);
     }
 ?>

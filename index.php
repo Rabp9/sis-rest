@@ -23,7 +23,7 @@
                     Bienvenidos al Restaurante Los Patos. La Calidad y El Buen Servicio en un Ambiente Campestre
                 </p>
                 <ul data-role="listview" data-inset="true">
-                    <li><a href="find.html">Encuéntranos</a></li>
+                    <li><a href="View/Home/encuentranos.html">Encuéntranos</a></li>
                     <li><a href="rooms.html">Nuestros Platos</a></li>
                     <li><a href="rooms.html">Lugares Turísticos</a></li>
                     <li><a href="contact.html">Contáctanos</a></li>

@@ -52,7 +52,7 @@
             $rs->bindParam(":email", $cliente["email"]);
             $rs->bindParam(":estado", $estado); // activo 
             $rs->execute();
-            $algo = $dbh->commit();
+            $dbh->commit();
             return $idCliente;
         } catch (PDOException $ex) {
             return 0;

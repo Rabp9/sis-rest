@@ -11,7 +11,7 @@
     */
     function getMesas() {
         global $dbh;
-        $rs = $dbh->query("select * from Mesa");
+        $rs = $dbh->query("select * from Mesa where estado = 1");
         while ($row = $rs->fetch()) {
             $mesas[] = $row;
         }
@@ -20,72 +20,55 @@
     
     function getMesa($idMesa) {
         global $dbh;
-        $rs = $dbh->prepare("select * from Cliente where idCliente=:idCliente");
-        $rs->bindParam(":idCliente", $idCliente);
+        $rs = $dbh->prepare("select * from Mesa where idMesa = :idMesa");
+        $rs->bindParam(":idMesa", $idMesa);
         $rs->execute();
         return $rs->fetch();
     }
 
-    function registrarNuevoCliente($cliente) {
+    function registrarNuevoMesa($mesa) {
         global $dbh;
         try {
             // Inicio de la transacción
             $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $dbh->setAttribute(PDO::ATTR_AUTOCOMMIT, FALSE);
             $dbh->beginTransaction();
-            // Contar cantidad de clientes
-            $rs = $dbh->prepare("SELECT count(*) 'cantidad' FROM Cliente");
-            $rs->execute();
-            $row = $rs->fetch();
-            $cantidad = $row["cantidad"];
+            // registrar mesa
             $estado = "1";
-            // Generar nuevo codigo
-            $idCliente = getCodigo(5, $cantidad + 1, "C");
-            // registrar cliente
-            $rs = $dbh->prepare("INSERT INTO Cliente(idCliente, nombres, apellidoPaterno, apellidoMaterno, telefono, direccion, email, estado) VALUES(:idCliente, :nombres, :apellidoPaterno, :apellidoMaterno, :telefono, :direccion, :email, :estado)");
-            $rs->bindParam(":idCliente", $idCliente);
-            $rs->bindParam(":nombres", $cliente["nombres"]);
-            $rs->bindParam(":apellidoPaterno", $cliente["apellidoPaterno"]);
-            $rs->bindParam(":apellidoMaterno", $cliente["apellidoMaterno"]);
-            $rs->bindParam(":telefono", $cliente["telefono"]);
-            $rs->bindParam(":direccion", $cliente["direccion"]);
-            $rs->bindParam(":email", $cliente["email"]);
+            $rs = $dbh->prepare("INSERT INTO Mesa(descripcion, estado) VALUES(:descripcion, :estado)");
+            $rs->bindParam(":descripcion", $mesa["descripcion"]);
             $rs->bindParam(":estado", $estado); // activo 
             $rs->execute();
-            $algo = $dbh->commit();
-            return $idCliente;
+            $id = $dbh->lastInsertId();
+            $dbh->commit();
+            return $id;
         } catch (PDOException $ex) {
             return 0;
             $dbh->rollBack();
         }
     }
     
-    function registrarEditarCliente($cliente) {
+    function registrarEditarMesa($mesa) {
         global $dbh;
         try {
             // Inicio de la transacción
             $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $dbh->setAttribute(PDO::ATTR_AUTOCOMMIT, FALSE);
             $dbh->beginTransaction();
-            // registrar edición de cliente
-            $rs = $dbh->prepare("UPDATE Cliente SET nombres=:nombres, apellidoPaterno=:apellidoPaterno, apellidoMaterno=:apellidoMaterno, telefono=:telefono, direccion=:direccion, email=:email WHERE idCliente=:idCliente");
-            $rs->bindParam(":idCliente", $cliente["idCliente"]);
-            $rs->bindParam(":nombres", $cliente["nombres"]);
-            $rs->bindParam(":apellidoPaterno", $cliente["apellidoPaterno"]);
-            $rs->bindParam(":apellidoMaterno", $cliente["apellidoMaterno"]);
-            $rs->bindParam(":telefono", $cliente["telefono"]);
-            $rs->bindParam(":direccion", $cliente["direccion"]);
-            $rs->bindParam(":email", $cliente["email"]);
+            // registrar edición de mesa
+            $rs = $dbh->prepare("UPDATE Mesa SET descripcion=:descripcion WHERE idMesa=:idMesa");
+            $rs->bindParam(":idMesa", $mesa["idMesa"]);
+            $rs->bindParam(":descripcion", $mesa["descripcion"]);
             $rs->execute();
             $dbh->commit();
-            return $cliente["idCliente"];
+            return $mesa["idMesa"];
         } catch (PDOException $ex) {
             return 0;
             $dbh->rollBack();
         }
     }
     
-    function eliminarCliente($idCliente) {
+    function eliminarMesa($idMesa) {
         global $dbh;
         try {
             // Inicio de la transacción
@@ -93,11 +76,11 @@
             $dbh->setAttribute(PDO::ATTR_AUTOCOMMIT, FALSE);
             $dbh->beginTransaction();
             // eliminar cliente
-            $rs = $dbh->prepare("UPDATE Cliente SET estado = 2 WHERE idCliente=:idCliente");
-            $rs->bindParam(":idCliente", $idCliente);
+            $rs = $dbh->prepare("UPDATE Mesa SET estado = 2 WHERE idMesa=:idMesa");
+            $rs->bindParam(":idMesa", $idMesa);
             $rs->execute();
             $dbh->commit();
-            return $idCliente;
+            return $idMesa;
         } catch (PDOException $ex) {
             return 0;
             $dbh->rollBack();

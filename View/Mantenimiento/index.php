@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,24 +21,46 @@
             </div>
             <div data-role="content">
                 <ul data-role="listview" data-inset="true">
+                    <?php if($_SESSION["rol"] == "administrador" || $_SESSION["rol"] == "mozo") { ?> 
                     <li>
                         <a href="Cliente/ListaCliente.php">
                             <img src="../../resources/img/icon-cliente.jpg">
                             Cliente
                         </a>
                     </li>
+                    <?php } ?>
+                    <?php if($_SESSION["rol"] == "administrador") { ?> 
                     <li>
                         <a href="Plato/ListaPlato.php">
                             <img src="../../resources/img/icon-platos2.jpg">
                             Plato
                         </a>
                     </li>
+                    <?php } ?>
+                    <?php if($_SESSION["rol"] == "administrador") { ?> 
                     <li>
-                        <a href="Mesa//ListaMesa.php">
+                        <a href="Mesa/ListaMesa.php">
                             <img src="../../resources/img/icon-mesa2.png">
                             Mesa
                         </a>
                     </li>
+                    <?php } ?>
+                    <?php if($_SESSION["rol"] == "administrador") { ?> 
+                    <li>
+                        <a href="Mozo/ListaMozo.php">
+                            <img src="../../resources/img/icon-mesa2.png">
+                            Mozo
+                        </a>
+                    </li>
+                    <?php } ?>
+                    <?php if($_SESSION["rol"] == "administrador") { ?> 
+                    <li>
+                        <a href="Usuario/ListaUsuario.php">
+                            <img src="../../resources/img/icon-mesa2.png">
+                            Usuario
+                        </a>
+                    </li>
+                    <?php } ?>
                 </ul>
             </div>
             <div data-role="footer">

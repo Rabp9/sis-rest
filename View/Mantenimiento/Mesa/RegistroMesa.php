@@ -1,3 +1,8 @@
+<?php
+    $submit = "editar";
+    require_once('../../../Controller/MantenimientoMesaController.php');
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,16 +17,30 @@
     <body>
         <div data-role="page" id="registroMesa" data-add-back-btn="true" data-back-btn-text="Atrás" data-theme="a">
             <div data-role="header">
-                <h1>Registro Mesa</h1>
+                <?php
+                    if(is_array($mesa)) $header = "Editar";
+                    else $header = "Nuevo";
+                ?>
+                <h1><?php echo $header; ?> Mesa</h1>
             </div>
             <div data-role="content">
                 <form action="../../../Controller/MantenimientoMesaController.php" method="post" data-ajax="false">
+                    <?php if(is_array($mesa)) { ?>
+                    <div data-role="fieldcontain">
+                        <label for="txtCodigo">Código:</label>
+                        <input type="text" name="idMesa" id="txtCodigo" value="<?php if(is_array($mesa)) echo $mesa["idMesa"]; ?>" readonly />
+                    </div>
+                    <?php } ?>
                     <div data-role="fieldcontain">
                         <label for="txtDescripcion">Descripción:</label>
-                        <input type="text" name="descripcion" id="txtDescripcion" value="" />
+                        <input type="text" name="descripcion" id="txtDescripcion" value="<?php if(is_array($mesa)) echo $mesa["descripcion"]; ?>" />
                     </div>
                     <div data-role="fieldcontain">
-                        <input type="submit" name="submit" value="Registrar" />
+                        <?php
+                            if(is_array($mesa)) $opcion = "Modificar";
+                            else $opcion = "Registrar";
+                        ?>
+                        <input type="submit" name="submit" value="<?php echo $opcion; ?>" />
                     </div>
                 </form>
             </div>

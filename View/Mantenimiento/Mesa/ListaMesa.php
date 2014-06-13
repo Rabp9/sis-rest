@@ -43,12 +43,12 @@
                             echo "<td colspan='3'><center>No hay registrado ninguna Mesa</center></td></tr>";
                         }
                         else {
-                            foreach ($mesa as $mesa) {
+                            foreach ($mesas as $mesa) {
                         ?>
                         <tr>
                             <td><?php echo $mesa["idMesa"]; ?></td>
                             <td><a href="RegistroMesa.php?idMesa=<?php echo $mesa["idMesa"]; ?>"><?php echo $mesa["descripcion"]; ?></a></td>
-                            <td><a href="../../../Controller/MantenimientoClienteController.php?submit=Eliminar&idCliente=<?php echo $cliente["idCliente"]; ?>" data-role="button" data-icon="delete" data-iconpos="notext" data-ajax="false">Delete</a></td>
+                            <td><a href="../../../Controller/MantenimientoMesaController.php?submit=Eliminar&idMesa=<?php echo $mesa["idMesa"]; ?>" data-role="button" data-icon="delete" data-iconpos="notext" data-ajax="false">Delete</a></td>
                         </tr>
                         <?php
                             }
@@ -56,7 +56,7 @@
                         ?>
                     </tbody>
                 </table>
-                <a href="RegistroMesa.php?accion=nuevo""><button>Nueva Mesa</button></a>
+                <a href="RegistroMesa.php?accion=nuevo"><button>Nueva Mesa</button></a>
             </div>
             <div data-role="footer" data-fullscreen="true">
                 <h4>Copyright SIS-REST &copy; 2014</h4>

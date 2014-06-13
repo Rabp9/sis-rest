@@ -1,3 +1,8 @@
+<?php
+    $submit = "editar";
+    require_once('../../../Controller/MantenimientoPlatoController.php');
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,20 +17,38 @@
     <body>
         <div data-role="page" id="registroPlato" data-add-back-btn="true" data-back-btn-text="Atrás" data-theme="a">
             <div data-role="header">
-                <h1>Registro Plato</h1>
+                <?php
+                    if(is_array($plato)) $header = "Editar";
+                    else $header = "Nuevo";
+                ?>
+                <h1><?php echo $header; ?> Plato</h1>
             </div>
             <div data-role="content">
                 <form action="../../../Controller/MantenimientoPlatoController.php" method="post" data-ajax="false">
+                    <?php if(is_array($cliente)) { ?>
+                    <div data-role="fieldcontain">
+                        <label for="txtCodigo">Código:</label>
+                        <input type="text" name="idPlato" id="txtCodigo" value="<?php if(is_array($plato)) echo $plato["idPlato"]; ?>" readonly />
+                    </div>
+                    <?php } ?>
                     <div data-role="fieldcontain">
                         <label for="txtDescripcion">Descripción:</label>
-                        <input type="text" name="descripcion" id="txtDescripcion" value="" />
+                        <input type="text" name="descripcion" id="txtDescripcion" value="<?php if(is_array($plato)) echo $plato["descripcion"]; ?>" />
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="flFoto">Foto:</label>
+                        <input type="file" name="foto" id="flFoto" value="" />
                     </div>
                     <div data-role="fieldcontain">
                         <label for="nmbPrecio">Precio:</label> 	
-                        <input type="range" name="precio" width="100px" id="nmbPrecio" value="0" step="0.5" min="0" max="50" data-popup-enabled="true"/>
+                        <input type="range" name="precio" width="100px" id="nmbPrecio" step="0.5" min="0" max="50" data-popup-enabled="true"  value="<?php if(is_array($plato)) echo $plato["precio"]; ?>" />
                     </div>
                     <div data-role="fieldcontain">
-                        <input type="submit" name="submit" value="Registrar" />
+                        <?php
+                            if(is_array($plato)) $opcion = "Modificar";
+                            else $opcion = "Registrar";
+                        ?>
+                        <input type="submit" name="submit" value="<?php echo $opcion; ?>" />
                     </div>
                 </form>
             </div>

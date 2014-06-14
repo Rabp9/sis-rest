@@ -15,43 +15,68 @@
     }
     
     if($submit == "Registrar") {
-        $cliente["nombres"] = $_POST["nombres"];
-        $cliente["apellidoPaterno"] = $_POST["apellidoPaterno"];
-        $cliente["apellidoMaterno"] = $_POST["apellidoMaterno"];
-        $cliente["telefono"] = $_POST["telefono"];
-        $cliente["direccion"] = $_POST["direccion"];
-        $cliente["email"] = $_POST["email"];
-        if($id = registrarNuevoCliente($cliente))
-            header("Location: ../View/Mantenimiento/Cliente/ListaCliente.php?rpta=correcto&mensaje=nuevo&id=" . $id);
-        else
-            header("Location: ../View/Mantenimiento/Cliente/ListaCliente.php?rpta=incorrecto&mensaje=nuevo");
+        $plato["descripcion"] = $_POST["descripcion"];
+        $plato["precio"] = $_POST["precio"];
+        $foto = $_FILES['foto'];
+        
+        $plato["foto"] = $foto['name'];
+        $tipo_foto = $foto['type'];
+        $tamano_foto = $foto['size'];
+        if (!(strpos($tipo_foto, 'jpeg') || strpos($tipo_foto, 'jpg') || strpos($tipo_foto, 'png') || strpos($tipo_foto, 'bmp')) || $tamano_foto > 1000000) {
+            header("Location: ../View/Mantenimiento/Plato/ListaPlato.php?rpta=incorrecto&mensaje=nuevo");
+        }
+        else {
+            if($id = registrarNuevoPlato($plato)) {
+                move_uploaded_file($foto["tmp_name"], "../resources/img/platos/" . $foto["name"]);
+                header("Location: ../View/Mantenimiento/Plato/ListaPlato.php?rpta=correcto&mensaje=nuevo&id=" . $id);
+            }
+            else {
+                header("Location: ../View/Mantenimiento/Plato/ListaPlato.php?rpta=incorrecto&mensaje=nuevo");
+            }
+        }
     }
     
     if($submit == "editar") {
-        $idCliente = $_GET["idCliente"];
-        $cliente = getCliente($idCliente);
+        $idPlato = $_GET["idPlato"];
+        $plato = getPlato($idPlato);
     }
     
     if($submit == "Modificar") {
-        $cliente["idCliente"] = $_POST["idCliente"];
-        $cliente["nombres"] = $_POST["nombres"];
-        $cliente["apellidoPaterno"] = $_POST["apellidoPaterno"];
-        $cliente["apellidoMaterno"] = $_POST["apellidoMaterno"];
-        $cliente["telefono"] = $_POST["telefono"];
-        $cliente["direccion"] = $_POST["direccion"];
-        $cliente["email"] = $_POST["email"];
-        $id = $cliente["idCliente"];
-        if(registrarEditarCliente($cliente))
-            header("Location: ../View/Mantenimiento/Cliente/ListaCliente.php?rpta=correcto&mensaje=editar&id=" . $id);
-        else
-            header("Location: ../View/Mantenimiento/Cliente/ListaCliente.php?rpta=incorrecto&mensaje=editar&id=" . $id);
+        $plato["idPlato"] = $_POST["idPlato"];
+        $plato["descripcion"] = $_POST["descripcion"];
+        $plato["precio"] = $_POST["precio"];
+        $foto = $_FILES['foto'];
+        
+        $plato["foto"] = $foto['name'];
+        $tipo_foto = $foto['type'];
+        $tamano_foto = $foto['size'];
+    
+        $plato_actual = getPlato($plato["idPlato"]);
+        
+        $id = $plato["idPlato"];
+        
+        if(registrarEditarPlato($plato)) {
+            if(!$plato["foto"] == "") {     
+                if (!(strpos($tipo_foto, 'jpeg') || strpos($tipo_foto, 'jpg') || strpos($tipo_foto, 'png') || strpos($tipo_foto, 'bmp')) || $tamano_foto > 1000000) {
+                    header("Location: ../View/Mantenimiento/Plato/ListaPlato.php?rpta=incorrecto&mensaje=nuevo");
+                }
+                else {
+                    unlink("../resources/img/platos/" . $plato_actual["foto"]);      
+                    move_uploaded_file($foto["tmp_name"], "../resources/img/platos/" . $foto["name"]);
+                }
+            }
+            header("Location: ../View/Mantenimiento/Plato/ListaPlato.php?rpta=correcto&mensaje=editar&id=" . $id);
+        }
+        else {
+            header("Location: ../View/Mantenimiento/Plato/ListaPlato.php?rpta=incorrecto&mensaje=editar&id=" . $id);
+        }
     }
     
     if($submit == "Eliminar") {
-        $idCliente = $_GET["idCliente"];
-        if($id = eliminarCliente($idCliente))
-            header("Location: ../View/Mantenimiento/Cliente/ListaCliente.php?rpta=correcto&mensaje=eliminar&id=" . $idCliente);
+        $idPlato = $_GET["idPlato"];
+        if($id = eliminarPlato($idPlato))
+            header("Location: ../View/Mantenimiento/Plato/ListaPlato.php?rpta=correcto&mensaje=eliminar&id=" . $idPlato);
         else
-            header("Location: ../View/Mantenimiento/Cliente/ListaCliente.php?rpta=incorrecto&mensaje=eliminar&id=" . $idCliente);
+            header("Location: ../View/Mantenimiento/Plato/ListaPlato.php?rpta=incorrecto&mensaje=eliminar&id=" . $idPlato);
     }
 ?>

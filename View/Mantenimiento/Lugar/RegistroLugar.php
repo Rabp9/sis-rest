@@ -1,6 +1,6 @@
 <?php
     $submit = "editar";
-    require_once('../../../Controller/MantenimientoPlatoController.php');
+    require_once('../../../Controller/MantenimientoLugarController.php');
 ?>
 
 <!DOCTYPE html>
@@ -8,43 +8,43 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="content-type" content="text/html;charset=UTF-8">
-        <title>SIS-REST - Registro Plato</title>
+        <title>SIS-REST - Registro Lugar</title>
         <link rel="stylesheet" type="text/css" href="../../../resources/css/los_patos.min.css" />
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile.structure-1.3.2.min.css" />
         <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
     </head>
     <body>
-        <div data-role="page" id="registroPlato" data-add-back-btn="true" data-back-btn-text="Atrás" data-theme="a">
+        <div data-role="page" id="registroLugar" data-add-back-btn="true" data-back-btn-text="Atrás" data-theme="a">
             <div data-role="header">
                 <?php
                     if(is_array($plato)) $header = "Editar";
                     else $header = "Nuevo";
                 ?>
-                <h1><?php echo $header; ?> Plato</h1>
+                <h1><?php echo $header; ?> Lugar</h1>
             </div>
             <div data-role="content">
-                <form action="../../../Controller/MantenimientoPlatoController.php" method="post" data-ajax="false" enctype="multipart/form-data">
+                <form action="../../../Controller/MantenimientoLugarController.php" method="post" data-ajax="false" enctype="multipart/form-data">
                     <?php if(is_array($plato)) { ?>
                     <div data-role="fieldcontain">
                         <label for="txtCodigo">Código:</label>
-                        <input type="text" name="idPlato" id="txtCodigo" value="<?php if(is_array($plato)) echo $plato["idPlato"]; ?>" readonly />
+                        <input type="text" name="idLugar" id="txtCodigo" value="<?php if(is_array($lugar)) echo $lugar["idLugar"]; ?>" readonly />
                     </div>
                     <?php } ?>
                     <div data-role="fieldcontain">
-                        <label for="txtDescripcion">Descripción:</label>
-                        <input type="text" name="descripcion" id="txtDescripcion" value="<?php if(is_array($plato)) echo $plato["descripcion"]; ?>" />
+                        <label for="txtTitulo">Título:</label>
+                        <input type="text" name="titulo" id="txtTitulo" value="<?php if(is_array($lugar)) echo $lugar["titulo"]; ?>" />
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="txtaDescripcion">Descripción:</label>
+                        <textarea rows="8" name="descripcion" id="txtaDescripcion"><?php if(is_array($lugar)) echo $lugar["descripcion"]; ?></textarea>
                     </div>
                     <div data-role="fieldcontain">
                         <label for="flFoto">Foto:</label>
                         <input type="file" name="foto" id="flFoto" value="" />
-                        <?php if(is_array($plato)) { ?>
-                            <img src="../../../resources/img/platos/<?php echo $plato["foto"]; ?>" alt="Foto" width="100%"/>
+                        <?php if(is_array($lugar)) { ?>
+                            <img src="../../../resources/img/lugares/<?php echo $lugar["foto"]; ?>" alt="Foto" width="100%"/>
                         <?php } ?>
-                    </div>
-                    <div data-role="fieldcontain">
-                        <label for="nmbPrecio">Precio:</label> 	
-                        <input type="range" name="precio" width="100px" id="nmbPrecio" step="0.5" min="0" max="50" data-popup-enabled="true"  value="<?php if(is_array($plato)) echo $plato["precio"]; ?>" />
                     </div>
                     <div data-role="fieldcontain">
                         <?php

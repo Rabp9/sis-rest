@@ -17,15 +17,10 @@
             </div>
             <div data-role="content">
                 <p>
-                    El restaurante Campestre Los Patos, se encuentra en un ambiente cálido 
-                    lejos del bullicio de la ciudad.
-                </p>
-                <p>
-                    Panamericana Norte Km 700<br/>
-                    Chepén - La Libertad - Perú<br/>
-                </p>
-                <p>
-                    <img src="http://maps.googleapis.com/maps/api/staticmap?center=-7.227131,-79.429836&zoom=13&size=300x300&sensor=false">
+                    <b>Teléfono Fijo:</b>
+                    <a href="tel:044562450">(044) 562450</a><br/>
+                    <b>Teléfono Celular:</b>
+                    <a href="tel:0449939679">(044) 9939679</a>
                 </p>
             </div>
             <div data-role="footer">

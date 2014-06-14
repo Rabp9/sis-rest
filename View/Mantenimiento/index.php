@@ -16,7 +16,7 @@
     <body>
         <div data-role="page" id="mantenimiento" data-theme="a">
             <div data-role="header">
-                <a href="../../index.php" data-icon="home">Home</a>
+                <a href="../../home.php" data-icon="home">Home</a>
                 <h1>Mantenimiento SIS-REST</h1>
             </div>
             <div data-role="content">
@@ -42,6 +42,14 @@
                         <a href="Mesa/ListaMesa.php">
                             <img src="../../resources/img/icon-mesa2.png">
                             Mesa
+                        </a>
+                    </li>
+                    <?php } ?>
+                    <?php if($_SESSION["rol"] == "administrador") { ?> 
+                    <li>
+                        <a href="Lugar/ListaLugar.php">
+                            <img src="../../resources/img/icon-mesa2.png">
+                            Lugar Turístico
                         </a>
                     </li>
                     <?php } ?>

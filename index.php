@@ -24,9 +24,10 @@
                 </p>
                 <ul data-role="listview" data-inset="true">
                     <li><a href="View/Home/encuentranos.html">Encuéntranos</a></li>
-                    <li><a href="rooms.html">Nuestros Platos</a></li>
-                    <li><a href="rooms.html">Lugares Turísticos</a></li>
-                    <li><a href="contact.html">Contáctanos</a></li>
+                    <li><a href="View/Home/platos.php">Nuestros Platos</a></li>
+                    <li><a href="View/Home/lugares.php">Lugares Turísticos</a></li>
+                    <li><a href="View/Home/contactanos.php">Contáctanos</a></li>
+                    <li><a href="login.php">Ingresar</a></li>
                 </ul>
             </div>
             <div data-role="footer">

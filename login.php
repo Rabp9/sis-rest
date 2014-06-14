@@ -16,7 +16,7 @@
                 <h1>Ingresar a SIS-REST</h1>
             </div>
             <div data-role="content">
-                <form action="Controller/LoguearController.php" method="post" data-ajax="false">
+                <form action="Controller/LoguearController.php" method="post" data-ajax="false" data-add-back-btn="true" data-back-btn-text="Atrás" >
                     <figure id="topimg">
                         <img src="resources/img/logo.png" alt="image" />
                     </figure>

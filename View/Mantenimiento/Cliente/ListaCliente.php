@@ -25,7 +25,7 @@
     <body>
         <div data-role="page" id="listaClientes" data-theme="a">
             <div data-role="header">
-                <a href="../../../index.php" data-icon="home">Home</a>
+                <a href="../../../home.php" data-icon="home">Home</a>
                 <h1>Lista Clientes</h1>
             </div>
             <div data-role="content">

@@ -29,7 +29,7 @@
                     </li>
                     <?php } ?>
                     <li>
-                        <a href="View/RegistrarPedido/">
+                        <a href="View/RegistrarPedido/seleccionarCliente.php">
                             <img src="resources/img/icon-pedidos3.png">
                             Pedidos
                         </a>
@@ -41,7 +41,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="View/Reportes/">
+                        <a href="View/Reporte/">
                             <img src="resources/img/icon-reportes2.jpg">
                             Reportes
                         </a>

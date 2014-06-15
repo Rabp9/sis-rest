@@ -25,7 +25,15 @@
         $rs->execute();
         return $rs->fetch();
     }
-
+    
+    function getMozoByIdUsuario($idUsuario) {
+        global $dbh;
+        $rs = $dbh->prepare("select * from Mozo where idUsuario=:idUsuario");
+        $rs->bindParam(":idUsuario", $idUsuario);
+        $rs->execute();
+        return $rs->fetch();
+    }
+    
     function registrarNuevoMozo($mozo) {
         global $dbh;
         try {
@@ -35,7 +43,8 @@
             $dbh->beginTransaction();
             $estado = "1";
             // registrar mozo
-            $rs = $dbh->prepare("INSERT INTO Mozo(nombres, apellidoPaterno, apellidoMaterno, telefono, direccion, estado) VALUES(:nombres, :apellidoPaterno, :apellidoMaterno, :telefono, :direccion, :estado)");
+            $rs = $dbh->prepare("INSERT INTO Mozo(idUsuario, nombres, apellidoPaterno, apellidoMaterno, telefono, direccion, estado) VALUES(:idUsuario, :nombres, :apellidoPaterno, :apellidoMaterno, :telefono, :direccion, :estado)");
+            $rs->bindParam(":idUsuario", $mozo["idUsuario"]); 
             $rs->bindParam(":nombres", $mozo["nombres"]);
             $rs->bindParam(":apellidoPaterno", $mozo["apellidoPaterno"]);
             $rs->bindParam(":apellidoMaterno", $mozo["apellidoMaterno"]);
@@ -60,8 +69,9 @@
             $dbh->setAttribute(PDO::ATTR_AUTOCOMMIT, FALSE);
             $dbh->beginTransaction();
             // registrar edición de mozo
-            $rs = $dbh->prepare("UPDATE Mozo SET nombres=:nombres, apellidoPaterno=:apellidoPaterno, apellidoMaterno=:apellidoMaterno, telefono=:telefono, direccion=:direccion WHERE idMozo=:idMozo");
+            $rs = $dbh->prepare("UPDATE Mozo SET idUsuario = :idUsuario, nombres=:nombres, apellidoPaterno=:apellidoPaterno, apellidoMaterno=:apellidoMaterno, telefono=:telefono, direccion=:direccion WHERE idMozo=:idMozo");
             $rs->bindParam(":idMozo", $mozo["idMozo"]);
+            $rs->bindParam(":idUsuario", $mozo["idUsuario"]); 
             $rs->bindParam(":nombres", $mozo["nombres"]);
             $rs->bindParam(":apellidoPaterno", $mozo["apellidoPaterno"]);
             $rs->bindParam(":apellidoMaterno", $mozo["apellidoMaterno"]);

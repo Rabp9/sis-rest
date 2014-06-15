@@ -17,7 +17,18 @@
         }
         return $usuarios;
     }
-    
+
+    function getUsuariosByRol($rol) {
+        global $dbh;
+        $rs = $dbh->prepare("select * from Usuario where rol = :rol AND estado = 1");
+        $rs->bindParam(":rol", $rol);
+        $rs->execute(); 
+        while ($row = $rs->fetch()) {
+            $usuarios[] = $row;
+        }
+        return $usuarios;
+    }
+        
     function getUsuario($idUsuario) {
         global $dbh;
         $rs = $dbh->prepare("select * from Usuario where idUsuario=:idUsuario");

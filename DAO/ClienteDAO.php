@@ -25,7 +25,7 @@
         $rs->execute();
         return $rs->fetch();
     }
-
+    
     function registrarNuevoCliente($cliente) {
         global $dbh;
         try {

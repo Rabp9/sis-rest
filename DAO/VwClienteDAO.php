@@ -15,5 +15,14 @@
             $vwClientes[] = $row;
         }
         return $vwClientes;
+    }    
+      
+    function getVwCliente($idCliente) {
+        global $dbh;
+        $rs = $dbh->prepare("select * from vw_Cliente where idCliente=:idCliente");
+        $rs->bindParam(":idCliente", $idCliente);
+        $rs->execute();
+        return $rs->fetch();
     }
+    
 ?>

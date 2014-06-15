@@ -3,6 +3,9 @@
         define('__ROOT__', dirname(dirname(__FILE__))); 
     require_once(__ROOT__.'/DAO/VwMozoDAO.php');
     require_once(__ROOT__.'/DAO/MozoDAO.php');
+    require_once(__ROOT__.'/DAO/UsuarioDAO.php');
+    
+    $usuarios = getUsuariosByRol("mozo");
     
     if(isset($_GET["submit"]))
         $submit = $_GET["submit"];
@@ -16,6 +19,7 @@
     }
     
     if($submit == "Registrar") {
+        $mozo["idUsuario"] = $_POST["idUsuario"];
         $mozo["nombres"] = $_POST["nombres"];
         $mozo["apellidoPaterno"] = $_POST["apellidoPaterno"];
         $mozo["apellidoMaterno"] = $_POST["apellidoMaterno"];
@@ -33,6 +37,7 @@
     }
     
     if($submit == "Modificar") {
+        $mozo["idUsuario"] = $_POST["idUsuario"];
         $mozo["idMozo"] = $_POST["idMozo"];
         $mozo["nombres"] = $_POST["nombres"];
         $mozo["apellidoPaterno"] = $_POST["apellidoPaterno"];

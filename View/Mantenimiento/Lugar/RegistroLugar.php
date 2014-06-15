@@ -18,14 +18,14 @@
         <div data-role="page" id="registroLugar" data-add-back-btn="true" data-back-btn-text="Atrás" data-theme="a">
             <div data-role="header">
                 <?php
-                    if(is_array($plato)) $header = "Editar";
+                    if(is_array($lugar)) $header = "Editar";
                     else $header = "Nuevo";
                 ?>
                 <h1><?php echo $header; ?> Lugar</h1>
             </div>
             <div data-role="content">
                 <form action="../../../Controller/MantenimientoLugarController.php" method="post" data-ajax="false" enctype="multipart/form-data">
-                    <?php if(is_array($plato)) { ?>
+                    <?php if(is_array($lugar)) { ?>
                     <div data-role="fieldcontain">
                         <label for="txtCodigo">Código:</label>
                         <input type="text" name="idLugar" id="txtCodigo" value="<?php if(is_array($lugar)) echo $lugar["idLugar"]; ?>" readonly />
@@ -48,7 +48,7 @@
                     </div>
                     <div data-role="fieldcontain">
                         <?php
-                            if(is_array($plato)) $opcion = "Modificar";
+                            if(is_array($lugar)) $opcion = "Modificar";
                             else $opcion = "Registrar";
                         ?>
                         <input type="submit" name="submit" value="<?php echo $opcion; ?>" />

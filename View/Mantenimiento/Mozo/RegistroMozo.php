@@ -2,7 +2,6 @@
     $submit = "editar";
     require_once('../../../Controller/MantenimientoMozoController.php');
 ?>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -50,6 +49,16 @@
                     <div data-role="fieldcontain">
                         <label for="txtaDireccion">Dirección:</label>	
                         <textarea rows="8" name="direccion" id="txtaDireccion"><?php if(is_array($mozo)) echo $mozo["direccion"]; ?></textarea>
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="sltUsuario" class="select">Usuario:</label>
+                        <select name="idUsuario" id="sltUsuario" data-native-menu="false">
+                            <option data-placeholder="true">Seleccionar</option>
+                            <?php var_dump($usuarios);
+                            foreach ($usuarios as $usuario) { ?>
+                            <option value="<?php echo $usuario["idUsuario"] ?>" <?php if(is_array($mozo)) if($mozo["idUsuario"] == $usuario["idUsuario"]) echo "selected" ?>><?php echo $usuario["username"]; ?></option>
+                            <?php } ?>
+                        </select>
                     </div>
                     <div data-role="fieldcontain">
                         <?php

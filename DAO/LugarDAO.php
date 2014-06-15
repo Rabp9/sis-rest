@@ -64,4 +64,50 @@
             $dbh->rollBack();
         }
     }
+     
+    function registrarEditarLugar($lugar) {
+        global $dbh;
+        try {
+            // Inicio de la transacción
+            $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $dbh->setAttribute(PDO::ATTR_AUTOCOMMIT, FALSE);
+            $dbh->beginTransaction();
+            // registrar edición de lugar
+            if($lugar["foto"] == "") {
+                $rs = $dbh->prepare("UPDATE Lugar SET titulo=:titulo, descripcion=:descripcion WHERE idLugar=:idLugar");
+            }
+            else {
+                $rs = $dbh->prepare("UPDATE Lugar SET titulo=:titulo, descripcion=:descripcion, foto=:foto WHERE idLugar=:idLugar");
+                $rs->bindParam(":foto", $lugar["foto"]);
+            }
+            $rs->bindParam(":idLugar", $lugar["idLugar"]);
+            $rs->bindParam(":titulo", $lugar["titulo"]);
+            $rs->bindParam(":descripcion", $lugar["descripcion"]);
+            $rs->execute();
+            $dbh->commit();
+            return $lugar["idLugar"];
+        } catch (PDOException $ex) {
+            return 0;
+            $dbh->rollBack();
+        }
+    }
+    
+    function eliminarLugar($idLugar) {
+        global $dbh;
+        try {
+            // Inicio de la transacción
+            $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $dbh->setAttribute(PDO::ATTR_AUTOCOMMIT, FALSE);
+            $dbh->beginTransaction();
+            // eliminar lugar
+            $rs = $dbh->prepare("UPDATE Lugar SET estado = 2 WHERE idLugar=:idLugar");
+            $rs->bindParam(":idLugar", $idLugar);
+            $rs->execute();
+            $dbh->commit();
+            return $idLugar;
+        } catch (PDOException $ex) {
+            return 0;
+            $dbh->rollBack();
+        }
+    }
 ?>

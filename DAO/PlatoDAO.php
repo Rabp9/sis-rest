@@ -49,7 +49,7 @@
             $estado = "1";
             // Generar nuevo codigo
             $idPlato = getCodigo(4, $cantidad + 1, "P");
-            // registrar cliente
+            // registrar plato
             $rs = $dbh->prepare("INSERT INTO Plato(idPlato, descripcion, foto, precio, estado) VALUES(:idPlato, :descripcion, :foto, :precio, :estado)");
             $rs->bindParam(":idPlato", $idPlato);
             $rs->bindParam(":descripcion", $plato["descripcion"]);

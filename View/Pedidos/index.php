@@ -24,7 +24,7 @@
                     <?php if($_SESSION["rol"] == "mozo" || $_SESSION["rol"] == "cliente") { ?> 
                     <li>
                         <a href="seleccionarCliente.php" data-ajax="false">
-                            <img src="../../resources/img/icon-cliente.jpg">
+                            <img src="../../resources/img/icon-pedidos3.png">
                             Registrar Pedido
                         </a>
                     </li>
@@ -32,7 +32,7 @@
                     <?php if($_SESSION["rol"] == "mozo" || $_SESSION["rol"] == "cliente" || $_SESSION["rol"] == "jefecocina") { ?> 
                     <li>
                         <a href="ListaPedidos.php">
-                            <img src="../../resources/img/icon-cliente.jpg">
+                            <img src="../../resources/img/lista2.png">
                             Lista Pedidos
                         </a>
                     </li>

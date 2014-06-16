@@ -24,7 +24,7 @@
                     <?php if($_SESSION["rol"] == "administrador") { ?> 
                     <li>
                         <a href="crearReservas.php">
-                            <img src="../../resources/img/icon-cliente.jpg">
+                            <img src="../../resources/img/icon-reservaciones2.jpg">
                             Generar Reservaciones
                         </a>
                     </li>
@@ -32,7 +32,7 @@
                     <?php if($_SESSION["rol"] == "administrador") { ?> 
                     <li>
                         <a href="listaReservas.php">
-                            <img src="../../resources/img/icon-cliente.jpg">
+                            <img src="../../resources/img/lista2.png">
                             Lista Reservaciones
                         </a>
                     </li>
@@ -40,7 +40,7 @@
                     <?php if($_SESSION["rol"] == "cliente") { ?> 
                     <li>
                         <a href="registrarReserva.php">
-                            <img src="../../resources/img/icon-cliente.jpg">
+                            <img src="../../resources/img/icon-reservaciones2.jpg">
                             Registrar Reservación
                         </a>
                     </li>

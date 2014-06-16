@@ -48,7 +48,7 @@
                     <?php if($_SESSION["rol"] == "administrador") { ?> 
                     <li>
                         <a href="Lugar/ListaLugar.php">
-                            <img src="../../resources/img/icon-mesa2.png">
+                            <img src="../../resources/img/lugar2.png">
                             Lugar Turístico
                         </a>
                     </li>
@@ -56,7 +56,7 @@
                     <?php if($_SESSION["rol"] == "administrador") { ?> 
                     <li>
                         <a href="Mozo/ListaMozo.php">
-                            <img src="../../resources/img/icon-mesa2.png">
+                            <img src="../../resources/img/mozo2.png">
                             Mozo
                         </a>
                     </li>
@@ -64,7 +64,7 @@
                     <?php if($_SESSION["rol"] == "administrador") { ?> 
                     <li>
                         <a href="Usuario/ListaUsuario.php">
-                            <img src="../../resources/img/icon-mesa2.png">
+                            <img src="../../resources/img/icon-cliente.png">
                             Usuario
                         </a>
                     </li>

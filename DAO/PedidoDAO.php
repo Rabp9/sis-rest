@@ -70,33 +70,8 @@
             $dbh->rollBack();
         }
     }
-    /*
-    function registrarEditarMozo($mozo) {
-        global $dbh;
-        try {
-            // Inicio de la transacción
-            $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $dbh->setAttribute(PDO::ATTR_AUTOCOMMIT, FALSE);
-            $dbh->beginTransaction();
-            // registrar edición de mozo
-            $rs = $dbh->prepare("UPDATE Mozo SET idUsuario = :idUsuario, nombres=:nombres, apellidoPaterno=:apellidoPaterno, apellidoMaterno=:apellidoMaterno, telefono=:telefono, direccion=:direccion WHERE idMozo=:idMozo");
-            $rs->bindParam(":idMozo", $mozo["idMozo"]);
-            $rs->bindParam(":idUsuario", $mozo["idUsuario"]); 
-            $rs->bindParam(":nombres", $mozo["nombres"]);
-            $rs->bindParam(":apellidoPaterno", $mozo["apellidoPaterno"]);
-            $rs->bindParam(":apellidoMaterno", $mozo["apellidoMaterno"]);
-            $rs->bindParam(":telefono", $mozo["telefono"]);
-            $rs->bindParam(":direccion", $mozo["direccion"]);
-            $rs->execute();
-            $dbh->commit();
-            return $mozo["idMozo"];
-        } catch (PDOException $ex) {
-            return 0;
-            $dbh->rollBack();
-        }
-    }
-    
-    function eliminarMozo($idMozo) {
+  
+    function atenderPedido($idPedido) {
         global $dbh;
         try {
             // Inicio de la transacción
@@ -104,16 +79,14 @@
             $dbh->setAttribute(PDO::ATTR_AUTOCOMMIT, FALSE);
             $dbh->beginTransaction();
             // eliminar mozo
-            $rs = $dbh->prepare("UPDATE Mozo SET estado = 2 WHERE idMozo=:idMozo");
-            $rs->bindParam(":idMozo", $idMozo);
+            $rs = $dbh->prepare("UPDATE Pedido SET estado = 2 WHERE idPedido=:idPedido");
+            $rs->bindParam(":idPedido", $idPedido);
             $rs->execute();
             $dbh->commit();
-            return $idMozo;
+            return $idPedido;
         } catch (PDOException $ex) {
             return 0;
             $dbh->rollBack();
         }
     }
-     * 
-     */
 ?>

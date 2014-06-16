@@ -27,11 +27,10 @@
     
     if($submit == "Consumo") {
         $pedidos = getReporteConsumoByFechas($fechaInicio, $fechaFin);
-        
         ob_start();
         $reporte = new Reporte();
         $reporte->setFecha($fechaInicio . " - " . $fechaFin);
-        $reporte->setTitulo('Pedidos');
+        $reporte->setTitulo('Consumo');
         $header = array(utf8_decode("Plato"), utf8_decode("Precio"), utf8_decode("Cantidad"), utf8_decode("Importe"));
         $cols = array("descripcion", "precio", "cantidad", "importe");
         $w = array(40, 30, 30, 30);

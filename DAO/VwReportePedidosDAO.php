@@ -32,11 +32,7 @@
        
     function getReporteConsumoByFechas($fechaInicio, $fechaFin) {
         global $dbh;          
-        $result = $dbh()->prepare("call usp_reporteConsumo(:fechaInicio, :fechaFin)");
-        $result->bindParam(":fechaInicio", $fechaInicio);
-        $result->bindParam(":fechaFin", $fechaFin);
-        return $result->execute();
-        $rs = $dbh->prepare("select * from vw_ReportePedidos WHERE fecha BETWEEN :fechaInicio AND :fechaFin");
+        $rs = $dbh->prepare("call usp_reporteConsumo(:fechaInicio, :fechaFin)");
         $rs->bindParam(":fechaInicio", $fechaInicio);
         $rs->bindParam(":fechaFin", $fechaFin);
         $rs->execute();

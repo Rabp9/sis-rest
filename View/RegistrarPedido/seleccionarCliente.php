@@ -21,7 +21,7 @@
                 <h1>Seleccionar Cliente</h1>
             </div>
             <div data-role="content">
-                <ul data-role="listview" data-inset="true">
+                <ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Buscar">
                     <?php
                     if(!is_array($clientes)) {
                         echo "Ningún cliente registrado en el sistema";

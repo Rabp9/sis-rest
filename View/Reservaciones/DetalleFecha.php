@@ -24,15 +24,15 @@
                 <ul data-role="listview" data-inset="true" data-divider-theme="a">
                     <li data-role="list-divider">11:00 am - 1:00 pm</li>
                     <?php foreach($mesas1 as $mesa1) {?>
-                    <li data-icon="<?php if($mesa1["reservado"] == "SI") echo "lock"; else echo "check"; ?>"><a href="#"><?php echo $mesa1["descripcion"]; ?></a></li>
+                    <li data-icon="<?php if($mesa1["reservado"] == "SI") echo "lock"; else echo "check"; ?>"><a href="confirmar.php?idMesa=<?php echo $mesa1["idMesa"]; ?>&fecha=<?php echo $fecha ?>" data-ajax="false"><?php echo $mesa1["descripcion"]; ?></a></li>
                     <?php } ?>
                     <li data-role="list-divider">1:00 pm - 3:00 pm</li>
                     <?php foreach($mesas2 as $mesa2) {?>
-                    <li data-icon="<?php if($mesa2["reservado"] == "SI") echo "lock"; else echo "check"; ?>"><a href="#"><?php echo $mesa2["descripcion"]; ?></a></li>
+                    <li data-icon="<?php if($mesa2["reservado"] == "SI") echo "lock"; else echo "check"; ?>"><a href="confirmar.php?idMesa=<?php echo $mesa2["idMesa"]; ?>&fecha=<?php echo $fecha ?>" data-ajax="false"><?php echo $mesa2["descripcion"]; ?></a></li>
                     <?php } ?>
                     <li data-role="list-divider">3:00 pm - 5:00 pm</li>
                     <?php foreach($mesas3 as $mesa3) {?>
-                    <li data-icon="<?php if($mesa3["reservado"] == "SI") echo "lock"; else echo "check"; ?>"><a href="#"><?php echo $mesa3["descripcion"]; ?></a></li>
+                    <li data-icon="<?php if($mesa3["reservado"] == "SI") echo "lock"; else echo "check"; ?>"><a href="confirmar.php?idMesa=<?php echo $mesa3["idMesa"]; ?>&fecha=<?php echo $fecha ?>" data-ajax="false"><?php echo $mesa3["descripcion"]; ?></a></li>
                     <?php } ?>
                 </ul>
             </div>

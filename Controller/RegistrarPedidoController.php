@@ -20,6 +20,10 @@
     
     
     if($submit == "index") {
+        if($_SESSION["rol"] == "cliente") {
+            $cliente = getClienteByIdUsuario($_SESSION["idUsuario"]);
+            header("Location: ../Pedidos/seleccionarPlato.php?idCliente=" . $cliente["idCliente"]);
+        }
         $clientes = getVwClientes();
     }
     
@@ -97,7 +101,10 @@
         $mesas = getMesas();
         
         $usuario = getUsuario($_SESSION["idUsuario"]);
-        $mozo = getMozoByIdUsuario($usuario["idUsuario"]);
+        if($_SESSION["rol"] == "mozo")
+            $mozo = getMozoByIdUsuario($usuario["idUsuario"]);
+        elseif ($_SESSION["rol"] == "cliente")
+            $mozo = getMozoRandom();
     }
     
     if($submit == "Registrar") {
@@ -116,5 +123,10 @@
             header("Location: ../View/Pedidos/ListaPedidos.php?rpta=correcto&id=" . $id);
         else
             header("Location: ../View/Pedidos/ListaPedidos.php?rpta=incorrecto");
+    }
+    
+    if($submit == "Cancelar") {
+        unset($_SESSION["pedidos"]);
+        header("Location: ../View/Pedidos/index.php");
     }
 ?>

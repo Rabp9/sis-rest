@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $submit = "index";
     require_once('../../Controller/RegistrarPedidoController.php');
 ?>

@@ -70,7 +70,7 @@
                     <a href="../../Controller/AtenderPedidoController.php?submit=boleta&idPedido=<?php echo $pedido["idPedido"]; ?>" data-ajax="false"><button>Generar Boleta</button></a>
                 </div>
                 <?php } ?>
-                <?php if($_SESSION["rol"] != "mozo" && $pedido["estado"] != 2) { ?>
+                <?php if($_SESSION["rol"] == "jefecocina" && $pedido["estado"] != 2) { ?>
                 <div data-role="fieldcontain">
                     <a href="../../Controller/AtenderPedidoController.php?submit=atender&idPedido=<?php echo $pedido["idPedido"]; ?>" data-ajax="false"><button>Atender Pedido</button></a>
                 </div>

@@ -23,7 +23,7 @@
                 <ul data-role="listview" data-inset="true">
                     <?php if($_SESSION["rol"] == "mozo" || $_SESSION["rol"] == "cliente") { ?> 
                     <li>
-                        <a href="seleccionarCliente.php">
+                        <a href="seleccionarCliente.php" data-ajax="false">
                             <img src="../../resources/img/icon-cliente.jpg">
                             Registrar Pedido
                         </a>

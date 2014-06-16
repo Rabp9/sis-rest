@@ -5,6 +5,7 @@
     require_once(__ROOT__.'/DAO/VwDetallePedidoDAO.php');
     require_once(__ROOT__.'/DAO/PedidoDAO.php');
     require_once(__ROOT__.'/DAO/MozoDAO.php');
+    require_once(__ROOT__.'/DAO/ClienteDAO.php');
     require_once(__ROOT__.'/Util/Reporte.php');
     
     if(isset($_GET["submit"]))
@@ -21,8 +22,13 @@
                 $nombreCompleto = $mozo["apellidoPaterno"] . " " . $mozo["apellidoMaterno"] . ", " . $mozo["nombres"];
                 $pedidos = getVwPedidosByIdMozo($mozo["idMozo"]);
             }
-            else {
+            elseif($_SESSION["rol"] == "jefecocina") {
                 $pedidos = getVwPedidos();    
+            }
+            elseif($_SESSION["rol"] == "cliente") {
+                $cliente = getClienteByIdUsuario($_SESSION["idUsuario"]);
+                $nombreCompleto = $cliente["apellidoPaterno"] . " " . $cliente["apellidoMaterno"] . ", " . $cliente["nombres"];
+                $pedidos = getVwPedidosByIdCliente($cliente["idCliente"]);
             }
         }
     }    

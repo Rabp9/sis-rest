@@ -2,6 +2,7 @@
     if(!defined('__ROOT__'))
         define('__ROOT__', dirname(dirname(__FILE__))); 
     require_once(__ROOT__.'/DAO/ReservaDAO.php');
+    require_once(__ROOT__.'/DAO/MesaDAO.php');
     
     if(isset($_GET["submit"]))
         $submit = $_GET["submit"];
@@ -20,6 +21,12 @@
         
         header("Location: ../View/Reservaciones/listaReservas.php?rpta=correcto&fecha=" . $fecha);
     }
+      
+    if($submit == "Buscar") {
+        $fecha = $_POST["fecha"];
+        
+        header("Location: ../View/Reservaciones/DetalleFecha.php?fecha=" . $fecha);
+    }
     
     if($submit == "Lista") {
         $reservas = getReservasActuales();
@@ -31,6 +38,12 @@
             $mesas1 = getMesasReservas($fecha . " 11:00:00");
             $mesas2 = getMesasReservas($fecha . " 13:00:00");
             $mesas3 = getMesasReservas($fecha . " 15:00:00");
+        }
+    }
+    
+    if($submit == "Confirmar") {
+        if(isset($_GET["idMesa"])) {
+            $mesa = getMesa($_GET["idMesa"]);
         }
     }
 ?>

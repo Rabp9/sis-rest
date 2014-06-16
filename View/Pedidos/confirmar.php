@@ -18,6 +18,7 @@
     <body>
         <div data-role="page" id="confirmarPedido" data-theme="a">
             <div data-role="header">
+                <a href="../../Controller/RegistrarPedidoController.php?submit=Cancelar" data-icon="close" data-ajax="false">Cancelar</a>
                 <h1>Confirmar Pedido</h1>
             </div>
             <div data-role="content">

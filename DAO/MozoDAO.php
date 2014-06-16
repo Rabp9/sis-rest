@@ -34,6 +34,17 @@
         return $rs->fetch();
     }
     
+    function getMozoRandom() {
+        global $dbh;
+        $rs = $dbh->query("SELECT idMozo FROM Mozo ORDER BY RAND() LIMIT 1;");
+        $row = $rs->fetch();
+        $row["idMozo"];
+        $rs = $dbh->prepare("select * from Mozo where idMozo=:idMozo");
+        $rs->bindParam(":idMozo", $row["idMozo"]);
+        $rs->execute();
+        return $rs->fetch();
+    }
+    
     function registrarNuevoMozo($mozo) {
         global $dbh;
         try {

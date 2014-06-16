@@ -31,7 +31,7 @@
             <div data-role="content">
                 <?php if(isset($nombreCompleto)) { ?>
                 <div data-role="fieldcontain">
-                    <label for="txtMozo">Mozo:</label>
+                    <label for="txtMozo"><?php if($_SESSION["rol"] == "mozo") echo "Mozo:"; else if($_SESSION["rol"] == "cliente") echo "Cliente:"; ?></label>
                     <input type="text" name="mozo" id="txtMozo" value="<?php echo $nombreCompleto; ?>" readonly />
                 </div>
                 <?php } ?>

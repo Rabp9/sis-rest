@@ -27,6 +27,17 @@
             $pedidos[] = $row;
         }
         return $pedidos;
+    }    
+    
+    function getVwPedidosByIdCliente($idCliente) {
+        global $dbh;
+        $rs = $dbh->prepare("select * from vw_Pedido WHERE idCliente = :idCliente");
+        $rs->bindParam(":idCliente", $idCliente);
+        $rs->execute();
+        while ($row = $rs->fetch()) {
+            $pedidos[] = $row;
+        }
+        return $pedidos;
     }   
     
     function getVwPedido($idPedido) {

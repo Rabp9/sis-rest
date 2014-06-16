@@ -28,7 +28,7 @@
     <body>
         <div data-role="page" id="seleccionarPlatos" data-theme="a">
             <div data-role="header">
-                <a href="seleccionarCliente.php" data-icon="back">Atrás</a>
+                <a href="<?php if($_SESSION["rol"] == "mozo") echo "seleccionarCliente.php"; elseif($_SESSION["rol"] == "cliente") echo "index.php"; ?>" data-icon="back">Atrás</a>
                 <h1>Seleccionar Plato</h1>
             </div>
             <div data-role="content">

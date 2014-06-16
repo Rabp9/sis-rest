@@ -26,6 +26,14 @@
         return $rs->fetch();
     }
     
+    function getClienteByIdUsuario($idUsuario) {
+        global $dbh;
+        $rs = $dbh->prepare("select * from Cliente where idUsuario=:idUsuario");
+        $rs->bindParam(":idUsuario", $idUsuario);
+        $rs->execute();
+        return $rs->fetch();
+    }
+    
     function registrarNuevoCliente($cliente) {
         global $dbh;
         try {

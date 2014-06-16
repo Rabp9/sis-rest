@@ -56,6 +56,16 @@
                         <textarea rows="8" name="direccion" id="txtaDireccion"><?php if(is_array($cliente)) echo $cliente["direccion"]; ?></textarea>
                     </div>
                     <div data-role="fieldcontain">
+                        <label for="sltUsuario" class="select">Usuario:</label>
+                        <select name="idUsuario" id="sltUsuario" data-native-menu="false">
+                            <option data-placeholder="true" >Seleccionar</option>
+                            <?php var_dump($usuarios);
+                            foreach ($usuarios as $usuario) { ?>
+                            <option value="<?php echo $usuario["idUsuario"] ?>" <?php if(is_array($cliente)) if($cliente["idUsuario"] == $usuario["idUsuario"]) echo "selected" ?>><?php echo $usuario["username"]; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <div data-role="fieldcontain">
                         <?php
                             if(is_array($cliente)) $opcion = "Modificar";
                             else $opcion = "Registrar";

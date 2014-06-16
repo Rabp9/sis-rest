@@ -6,7 +6,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="content-type" content="text/html;charset=UTF-8">
-        <title>SIS-REST - Reportes</title>
+        <title>SIS-REST - Pedidos</title>
         <link rel="stylesheet" type="text/css" href="../../resources/css/los_patos.min.css" />
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile.structure-1.3.2.min.css" />
         <link rel="stylesheet" type="text/css" href="../../resources/css/dashborad.css"/>
@@ -14,26 +14,26 @@
 	<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
     </head>
     <body>
-        <div data-role="page" id="reportes" data-theme="a">
+        <div data-role="page" id="pedidos" data-theme="a">
             <div data-role="header">
                 <a href="../../home.php" data-icon="home">Home</a>
-                <h1>SIS-REST - Reportes</h1>
+                <h1>SIS-REST - Pedidos</h1>
             </div>
             <div data-role="content">
                 <ul data-role="listview" data-inset="true">
-                    <?php if($_SESSION["rol"] == "administrador" || $_SESSION["rol"] == "jefecocina") { ?> 
+                    <?php if($_SESSION["rol"] == "mozo" || $_SESSION["rol"] == "cliente") { ?> 
                     <li>
-                        <a href="reportePedidos.php">
+                        <a href="seleccionarCliente.php">
                             <img src="../../resources/img/icon-cliente.jpg">
-                            Reporte Pedidos
+                            Registrar Pedido
                         </a>
                     </li>
                     <?php } ?>
-                    <?php if($_SESSION["rol"] == "administrador") { ?> 
+                    <?php if($_SESSION["rol"] == "mozo" || $_SESSION["rol"] == "cliente" || $_SESSION["rol"] == "jefecocina") { ?> 
                     <li>
-                        <a href="reporteConsumo.php">
+                        <a href="ListaPedidos.php">
                             <img src="../../resources/img/icon-cliente.jpg">
-                            Reporte Consumo
+                            Lista Pedidos
                         </a>
                     </li>
                     <?php } ?>

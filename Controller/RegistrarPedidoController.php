@@ -111,11 +111,10 @@
         $pedido["importeTotal"] = $_POST["importeTotal"];
         $pedido["observaciones"] = $_POST["observaciones"];
         $detallePedidos = $_SESSION["pedidos"];
-        echo registrarPedido($pedido, $detallePedidos);
-        /*if($id = registrarPedido($pedido))
-            header("Location: ../View/ListaPedidos/index.php?rpta=correcto&mensaje=nuevo&id=" . $id);
+        unset($_SESSION["pedidos"]);
+        if($id = registrarPedido($pedido, $detallePedidos))
+            header("Location: ../View/Pedidos/ListaPedidos.php?rpta=correcto&id=" . $id);
         else
-            header("Location: ../View/ListaPedidos/index.php?rpta=incorrecto&mensaje=nuevo");
-*/
+            header("Location: ../View/Pedidos/ListaPedidos.php?rpta=incorrecto");
     }
 ?>

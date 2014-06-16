@@ -28,24 +28,30 @@
                         </a>
                     </li>
                     <?php } ?>
+                    <?php if($_SESSION["rol"] == "cliente" || $_SESSION["rol"] == "mozo" || $_SESSION["rol"] == "jefecocina") { ?> 
                     <li>
-                        <a href="View/RegistrarPedido/seleccionarCliente.php">
+                        <a href="View/Pedidos/index.php">
                             <img src="resources/img/icon-pedidos3.png">
                             Pedidos
                         </a>
                     </li>
+                    <?php } ?>
+                    <?php if($_SESSION["rol"] == "cliente" || $_SESSION["rol"] == "administrador") { ?> 
                     <li>
                         <a href="View/Reservaciones/">
                             <img src="resources/img/icon-reservaciones2.jpg">
                             Reservaciones
                         </a>
                     </li>
+                    <?php } ?>
+                    <?php if($_SESSION["rol"] == "administrador" || $_SESSION["rol"] == "jefecocina") { ?> 
                     <li>
                         <a href="View/Reporte/">
                             <img src="resources/img/icon-reportes2.jpg">
                             Reportes
                         </a>
                     </li>
+                    <?php } ?>
                 </ul>
             </div>
             <div data-role="footer">

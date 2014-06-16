@@ -1,3 +1,7 @@
+<?php
+    $submit = "Index";
+    require_once '../../Controller/RegistrarReservaController.php';
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,24 +21,19 @@
                 <h1>Crear Reservas</h1>
             </div>
             <div data-role="content">
-                <div data-role="fieldcontain">
-                    <label for="dtFecha">Fecha:</label>
-                    <input type="date" name="fecha" id="dtFecha" value="" />
-                </div>
-                <ul data-role="listview" data-inset="true" data-divider-theme="a">
-                    <li data-role="list-divider">11:00 am - 1:00 pm</li>
-                    <li>Mesa 1</li>
-                    <li>Mesa 1</li>
-                    <li>Mesa 1</li>
-                    <li data-role="list-divider">1:00 pm - 3:00 pm</li>
-                    <li>Mesa 1</li>
-                    <li>Mesa 1</li>
-                    <li>Mesa 1</li>
-                    <li data-role="list-divider">3:00 pm - 5:00 pm</li>
-                    <li>Mesa 1</li>
-                    <li>Mesa 1</li>
-                    <li>Mesa 1</li>
-                </ul>
+                <form action="../../Controller/RegistrarReservaController.php?submit=Crear" method="POST" data-ajax="false">
+                    <div data-role="fieldcontain">
+                        <label for="txtFechaUltimaReserva">Fecha última Reserva:</label>
+                        <input type="text" name="fechaUltimaReserva" id="txtFechaUltimaReserva" value="<?php echo $fechaUltimaReserva; ?>" readonly />
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="dtCrearReservas">Crear reservas hasta:</label>
+                        <input type="date" name="fechaCrearReserva" id="txtCrearReserva" value="" />
+                    </div>
+                    <div data-role="fieldcontain">
+                        <input type="submit" name="submit" value="Crear" />
+                    </div>
+                </form>
             </div>
             <div data-role="footer" data-fullscreen="true">
                 <h4>Copyright SIS-REST &copy; 2014</h4>

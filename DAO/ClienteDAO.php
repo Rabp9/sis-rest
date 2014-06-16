@@ -42,7 +42,7 @@
             // Generar nuevo codigo
             $idCliente = getCodigo(5, $cantidad + 1, "C");
             // registrar cliente
-            $rs = $dbh->prepare("INSERT INTO Cliente(idCliente, nombres, apellidoPaterno, apellidoMaterno, telefono, direccion, email, estado) VALUES(:idCliente, :nombres, :apellidoPaterno, :apellidoMaterno, :telefono, :direccion, :email, :estado)");
+            $rs = $dbh->prepare("INSERT INTO Cliente(idCliente, nombres, apellidoPaterno, apellidoMaterno, telefono, direccion, email, idUsuario, estado) VALUES(:idCliente, :nombres, :apellidoPaterno, :apellidoMaterno, :telefono, :direccion, :email, :idUsuario, :estado)");
             $rs->bindParam(":idCliente", $idCliente);
             $rs->bindParam(":nombres", $cliente["nombres"]);
             $rs->bindParam(":apellidoPaterno", $cliente["apellidoPaterno"]);
@@ -50,6 +50,7 @@
             $rs->bindParam(":telefono", $cliente["telefono"]);
             $rs->bindParam(":direccion", $cliente["direccion"]);
             $rs->bindParam(":email", $cliente["email"]);
+            $rs->bindParam(":idUsuario", $cliente["idUsuario"]);
             $rs->bindParam(":estado", $estado); // activo 
             $rs->execute();
             $dbh->commit();
@@ -68,7 +69,7 @@
             $dbh->setAttribute(PDO::ATTR_AUTOCOMMIT, FALSE);
             $dbh->beginTransaction();
             // registrar edición de cliente
-            $rs = $dbh->prepare("UPDATE Cliente SET nombres=:nombres, apellidoPaterno=:apellidoPaterno, apellidoMaterno=:apellidoMaterno, telefono=:telefono, direccion=:direccion, email=:email WHERE idCliente=:idCliente");
+            $rs = $dbh->prepare("UPDATE Cliente SET nombres=:nombres, apellidoPaterno=:apellidoPaterno, apellidoMaterno=:apellidoMaterno, telefono=:telefono, direccion=:direccion, email=:email, idUsuario=:idUsuario WHERE idCliente=:idCliente");
             $rs->bindParam(":idCliente", $cliente["idCliente"]);
             $rs->bindParam(":nombres", $cliente["nombres"]);
             $rs->bindParam(":apellidoPaterno", $cliente["apellidoPaterno"]);
@@ -76,6 +77,7 @@
             $rs->bindParam(":telefono", $cliente["telefono"]);
             $rs->bindParam(":direccion", $cliente["direccion"]);
             $rs->bindParam(":email", $cliente["email"]);
+            $rs->bindParam(":idUsuario", $cliente["idUsuario"]);
             $rs->execute();
             $dbh->commit();
             return $cliente["idCliente"];

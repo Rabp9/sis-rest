@@ -16,6 +16,17 @@
             $pedidos[] = $row;
         }
         return $pedidos;
+    }
+    
+    function getVwPedidosByIdMozo($idMozo) {
+        global $dbh;
+        $rs = $dbh->prepare("select * from vw_Pedido WHERE idMozo = :idMozo");
+        $rs->bindParam(":idMozo", $idMozo);
+        $rs->execute();
+        while ($row = $rs->fetch()) {
+            $pedidos[] = $row;
+        }
+        return $pedidos;
     }   
     
     function getVwPedido($idPedido) {

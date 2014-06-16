@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once('../../Controller/AtenderPedidoController.php');
 ?>
 <!DOCTYPE html>
@@ -47,7 +48,7 @@
                     <tbody>
                         <?php
                         if(!is_array($detallePedidos)) {
-                            echo "<td colspan='7'><center>No hay registrado ningún Platos</center></td></tr>";
+                            echo "<td colspan='7'><center>No hay registrado ningún Plato</center></td></tr>";
                         }
                         else {
                             foreach ($detallePedidos as $detallePedido) {
@@ -64,9 +65,16 @@
                         ?>
                     </tbody>
                 </table>
+                <?php if($pedido["estado"] == 2) { ?>
+                <div data-role="fieldcontain">
+                    <a href="../../Controller/AtenderPedidoController.php?submit=boleta&idPedido=<?php echo $pedido["idPedido"]; ?>" data-ajax="false"><button>Generar Boleta</button></a>
+                </div>
+                <?php } ?>
+                <?php if($_SESSION["rol"] != "mozo" && $pedido["estado"] != 2) { ?>
                 <div data-role="fieldcontain">
                     <a href="../../Controller/AtenderPedidoController.php?submit=atender&idPedido=<?php echo $pedido["idPedido"]; ?>" data-ajax="false"><button>Atender Pedido</button></a>
                 </div>
+                <?php } ?>
             </div>
             <div data-role="footer" data-fullscreen="true">
                 <h4>Copyright SIS-REST &copy; 2014</h4>

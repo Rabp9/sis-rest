@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $submit = "lista";
     require_once('../../Controller/AtenderPedidoController.php');
 ?>
@@ -13,17 +14,27 @@
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile.structure-1.3.2.min.css" />
         <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+        <?php if(isset($_GET["rpta"])) { ?>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $.mobile.changePage( "#dialogo", { role: "dialog" } );
+            });
+        </script>
+        <?php }?>
     </head>
     <body>
         <div data-role="page" id="listaPedidos" data-theme="a">
             <div data-role="header">
+                <a href="../../home.php" data-icon="home" data-ajax="false">Home</a>
                 <h1>Lista Pedidos</h1>
             </div>
             <div data-role="content">
+                <?php if(isset($nombreCompleto)) { ?>
                 <div data-role="fieldcontain">
                     <label for="txtMozo">Mozo:</label>
-                    <input type="text" name="mozo" id="txtMozo" value="<?php echo $mozo; ?>" readonly />
+                    <input type="text" name="mozo" id="txtMozo" value="<?php echo $nombreCompleto; ?>" readonly />
                 </div>
+                <?php } ?>
                 <table data-role="table" class="ui-responsive" data-split-icon="delete">
                     <thead>
                         <tr>
@@ -51,7 +62,7 @@
                             <td><?php echo $pedido["mozo"]; ?></td>
                             <td><?php echo $pedido["fecha"]; ?></td>
                             <td><?php echo $pedido["importeTotal"]; ?></td>
-                            <td><?php echo $pedido["estado"]; ?></td>
+                            <td><?php if($pedido["estado"] == 1) echo "en proceso"; elseif($pedido["estado"] == 2) echo "atendido" ?></td>
                         </tr>
                         <?php
                             }
@@ -64,5 +75,24 @@
                 <h4>Copyright SIS-REST &copy; 2014</h4>
             </div>
         </div>
+        
+        <div data-role="dialog" id="dialogo">
+            <div data-role="header">
+                <h1>Mensaje</h1>
+            </div>
+            <div data-role="content">
+                <?php if($_GET["rpta"] == "correcto") { ?>
+                <p>Pedido Registrado correctamente</p>
+                <p>Código Pedido: <?php echo $_GET["id"]; ?></p>
+                <?php }?>
+                <?php if($_GET["rpta"] == "incorrecto") {?>
+                <p>No fue posible registrar el pedido</p>
+                <?php } ?>
+                <?php if($_GET["rpta"] == "boleta") { ?>
+                <p>Pedido: <?php echo $_GET["idPedido"]; ?></p>
+                <p>Para generar Boleta, volver a seleccionar el Pedido</p>
+                <?php } ?>
+            </div>
+        </div>​
     </body>
 </html>

@@ -52,4 +52,37 @@
         }
         return $mesas;
     }
+    
+    function registrarReserva($reserva) {
+        global $dbh;
+        try {
+            // Inicio de la transacción
+            $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $dbh->setAttribute(PDO::ATTR_AUTOCOMMIT, FALSE);
+            $dbh->beginTransaction();
+            // Contar cantidad de clientes
+            $rs = $dbh->prepare("SELECT count(*) 'cantidad' FROM Reserva");
+            $rs->execute();
+            $row = $rs->fetch();
+            $cantidad = $row["cantidad"];
+            $estado = "1";
+            // Generar nuevo codigo
+            $idReserva = getCodigo(5, $cantidad + 1, "R");
+            // registrar reserva
+            $rs = $dbh->prepare("INSERT INTO Reserva(idReserva, idMesa, idHora, idUsuario, fechaHora, nPersonas, estado) VALUES(:idReserva, :idMesa, :idHora, :idUsuario, :fechaHora, :nPersonas, :estado)");
+            $rs->bindParam(":idReserva", $idReserva);
+            $rs->bindParam(":idMesa", $reserva["idMesa"]);
+            $rs->bindParam(":idHora", $reserva["idHora"]);
+            $rs->bindParam(":idUsuario", $reserva["idUsuario"]);
+            $rs->bindParam(":fechaHora", $reserva["fechaHora"]);
+            $rs->bindParam(":nPersonas", $reserva["nPersonas"]);
+            $rs->bindParam(":estado", $estado); // activo 
+            $rs->execute();
+            $dbh->commit();
+            return $idReserva;
+        } catch (PDOException $ex) {
+            return 0;
+            $dbh->rollBack();
+        }
+    }
 ?>

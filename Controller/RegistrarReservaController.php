@@ -3,6 +3,8 @@
         define('__ROOT__', dirname(dirname(__FILE__))); 
     require_once(__ROOT__.'/DAO/ReservaDAO.php');
     require_once(__ROOT__.'/DAO/MesaDAO.php');
+    require_once(__ROOT__.'/DAO/HoraDAO.php');
+    require_once(__ROOT__.'/DAO/ClienteDAO.php');
     
     if(isset($_GET["submit"]))
         $submit = $_GET["submit"];
@@ -44,6 +46,24 @@
     if($submit == "Confirmar") {
         if(isset($_GET["idMesa"])) {
             $mesa = getMesa($_GET["idMesa"]);
+            $fechaHora = $_GET["fecha"] . " " . $_GET["hora"];
+            $hora = getHoraByHoraInicio($fechaHora); 
+            if($_SESSION["rol"] == "cliente") {
+                $cliente = getClienteByIdUsuario($_SESSION["idUsuario"]);
+                $nombreCompleto = $cliente["apellidoPaterno"] . " " . $cliente["apellidoMaterno"] . ", " . $cliente["nombres"];
+            }
         }
+    } 
+    
+    if($submit == "Registrar") {
+        $reserva["idMesa"] = $_POST["idMesa"];
+        $reserva["idHora"] = $_POST["idHora"];
+        $reserva["idUsuario"] = $_POST["idUsuario"];
+        $reserva["fechaHora"] = $_POST["fechaHora"];
+        $reserva["nPersonas"] = $_POST["nPersonas"];
+        if($id = registrarReserva($reserva))
+            header("Location: ../View/Reservaciones/index.php?rpta=correcto&id=" . $id);
+        else
+            header("Location: ../View/Reservaciones/index.php?rpta=incorrecto");  
     }
 ?>

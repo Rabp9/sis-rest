@@ -33,7 +33,7 @@
                     <?php } ?>
                     <div data-role="fieldcontain">
                         <label for="txtDescripcion">Descripción:</label>
-                        <input type="text" name="descripcion" id="txtDescripcion" value="<?php if(is_array($plato)) echo $plato["descripcion"]; ?>" />
+                        <input type="text" name="descripcion" id="txtDescripcion" value="<?php if(is_array($plato)) echo $plato["descripcion"]; ?>" required maxlength="50" />
                     </div>
                     <div data-role="fieldcontain">
                         <label for="flFoto">Foto:</label>
@@ -44,7 +44,7 @@
                     </div>
                     <div data-role="fieldcontain">
                         <label for="nmbPrecio">Precio:</label> 	
-                        <input type="range" name="precio" width="100px" id="nmbPrecio" step="0.5" min="0" max="50" data-popup-enabled="true"  value="<?php if(is_array($plato)) echo $plato["precio"]; ?>" />
+                        <input type="range" name="precio" width="100px" id="nmbPrecio" step="0.5" min="0" max="50" data-popup-enabled="true"  value="<?php if(is_array($plato)) echo $plato["precio"]; ?>" required />
                     </div>
                     <div data-role="fieldcontain">
                         <?php

@@ -33,11 +33,11 @@
                     <?php } ?>
                     <div data-role="fieldcontain">
                         <label for="txtTitulo">Título:</label>
-                        <input type="text" name="titulo" id="txtTitulo" value="<?php if(is_array($lugar)) echo $lugar["titulo"]; ?>" />
+                        <input type="text" name="titulo" id="txtTitulo" value="<?php if(is_array($lugar)) echo $lugar["titulo"]; ?>" required maxlength="50" />
                     </div>
                     <div data-role="fieldcontain">
                         <label for="txtaDescripcion">Descripción:</label>
-                        <textarea rows="8" name="descripcion" id="txtaDescripcion"><?php if(is_array($lugar)) echo $lugar["descripcion"]; ?></textarea>
+                        <textarea rows="8" name="descripcion" id="txtaDescripcion" required maxlength="700"><?php if(is_array($lugar)) echo $lugar["descripcion"]; ?></textarea>
                     </div>
                     <div data-role="fieldcontain">
                         <label for="flFoto">Foto:</label>

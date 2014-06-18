@@ -17,19 +17,29 @@
                 <h1>Reporte Consumo</h1>
             </div>
             <div data-role="content">
-                <form action="../../Controller/ReporteController.php?submit=Consumo" method="POST" data-ajax="false">
+                <form id="frmReporteConsumo" action="../../Controller/ReporteController.php?submit=Consumo" method="POST" data-ajax="false">
                     <div data-role="fieldcontain">
                         <label for="dtFechaInicio">Fecha Inicio:</label>
-                        <input type="date" name="fechaInicio" id="dtFechaInicio" value="" />
+                        <input type="date" name="fechaInicio" id="dtFechaInicio" value="" required />
                     </div>
                     <div data-role="fieldcontain">
                         <label for="dtFechaFin">Fecha Fin:</label>
                         <input type="date" name="fechaFin" id="dtFechaFin" value="" />
                     </div>
                     <div data-role="fieldcontain">
-                        <input type="submit" name="submit" value="Reportar" data-icon="search" />
+                        <input type="submit" name="submit" value="Reportar" data-icon="search" required />
                     </div>
                 </form>
+                <script type="text/javascript">
+                   $("#frmReporteConsumo").submit(function() {
+                        var fechaInicio = $("#dtFechaInicio").val();
+                        var fechaFin = $("#dtFechaFin").val();
+                        if(fechaInicio > fechaFin) {
+                            alert("La fecha Fin debe ser posterior");
+                            return false;
+                        }
+                    });
+                </script>
             </div>
             <div data-role="footer" data-fullscreen="true">
                 <h4>Copyright SIS-REST &copy; 2014</h4>

@@ -25,7 +25,7 @@
                 <h1><?php echo $header; ?> Usuario</h1>
             </div>
             <div data-role="content">
-                <form action="../../../Controller/MantenimientoUsuarioController.php" method="post" data-ajax="false">
+                <form id="frmRegistroUsuario" action="../../../Controller/MantenimientoUsuarioController.php" method="post" data-ajax="false">
                     <?php if(is_array($usuario)) { ?>
                     <div data-role="fieldcontain">
                         <label for="txtCodigo">Código:</label>
@@ -34,20 +34,20 @@
                     <?php } ?>
                     <div data-role="fieldcontain">
                         <label for="txtUsername">Username:</label>
-                        <input type="text" name="username" id="txtUsername" value="<?php if(is_array($usuario)) echo $usuario["username"]; ?>" />
+                        <input type="text" name="username" id="txtUsername" value="<?php if(is_array($usuario)) echo $usuario["username"]; ?>" required maxlength="20"/>
                     </div>
                     <div data-role="fieldcontain">
                         <label for="txtPassword">Password:</label>
-                        <input type="password" name="password" id="txtPassword" value="<?php if(is_array($usuario)) echo $usuario["password"]; ?>" />
+                        <input type="password" name="password" id="txtPassword" value="<?php if(is_array($usuario)) echo $usuario["password"]; ?>" maxlength="45" />
                     </div>
                     <div data-role="fieldcontain">
                         <label for="txtRepassword">Confirmar Password:</label>
-                        <input type="password" name="repassword" id="txtRepassword" value="<?php if(is_array($usuario)) echo $usuario["password"]; ?>" />
+                        <input type="password" name="repassword" id="txtRepassword" value="<?php if(is_array($usuario)) echo $usuario["password"]; ?>" maxlength="45" />
                     </div>
                     <div data-role="fieldcontain">
                         <label for="sltRol" class="select">Rol:</label>
-                        <select name="rol" id="sltRol" data-native-menu="false">
-                            <option data-placeholder="true">Seleccionar</option>
+                        <select name="rol" id="sltRol" data-native-menu="false" required>
+                            <option data-placeholder="true" value="">Seleccionar</option>
                             <option value="administrador" <?php if($usuario["rol"] == "administrador") echo "selected"; ?>>Administrador</option>
                             <option value="mozo" <?php if($usuario["rol"] == "mozo") echo "selected"; ?>>Mozo</option>
                             <option value="cliente" <?php if($usuario["rol"] == "cliente") echo "selected"; ?>>Cliente</option>
@@ -61,6 +61,16 @@
                         <input type="submit" name="submit" value="<?php echo $opcion; ?>" />
                     </div>
                 </form>
+                <script type="text/javascript">
+                    $("#frmRegistroUsuario").submit(function() {
+                        var password = $("#txtPassword").val();
+                        var repassword = $("#txtRepassword").val();
+                        if(password != repassword) {
+                            alert("Las contraseñas no coinciden");
+                            return false;
+                        }
+                    });
+                </script>
             </div>
             <div data-role="footer">
                 <h4>Copyright SIS-REST &copy; 2014</h4>

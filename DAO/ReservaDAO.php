@@ -15,6 +15,14 @@
         $row = $rs->fetch();
         return $row["fechaUltima"];
     }
+        
+    function getReserva($idReserva) {
+        global $dbh;
+        $rs = $dbh->prepare("select * from vw_Reservas WHERE idReserva = :idReserva"); 
+        $rs->bindParam(":idReserva", $idReserva);
+        $rs->execute();
+        return $rs->fetch();
+    }
     
     function crearReservas($fechaActual, $fecha) {
         global $dbh;
@@ -44,6 +52,7 @@
     
     function getMesasReservas($fechaHora) {
         global $dbh;
+        echo $fechaHora;
         $rs = $dbh->prepare("call usp_mesasReservas(:fechaHora)"); 
         $rs->bindParam(":fechaHora", $fechaHora);
         $rs->execute();
@@ -84,5 +93,24 @@
             return 0;
             $dbh->rollBack();
         }
+    }
+    function getReservaByIdHoraIdMesa($idHora, $idMesa) {
+        global $dbh;
+        $rs = $dbh->prepare("select * from Reserva WHERE idHora = :idHora AND idMesa = :idMesa"); 
+        $rs->bindParam(":idHora", $idHora);
+        $rs->bindParam(":idMesa", $idMesa);
+        $rs->execute();
+        return $rs->fetch();
+    }  
+    
+    function getReservaByIdUsuario($idUsuario) {
+        global $dbh;
+        $rs = $dbh->prepare("select * from vw_Reservas WHERE idUsuario = :idUsuario"); 
+        $rs->bindParam(":idUsuario", $idUsuario);
+        $rs->execute();
+        while ($row = $rs->fetch()) {
+            $reservas[] = $row;
+        }
+        return $reservas;
     }
 ?>

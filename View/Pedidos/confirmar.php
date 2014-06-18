@@ -36,8 +36,8 @@
                     </div>
                     <div data-role="fieldcontain">
                         <label for="sltMesa" class="select">Mesa:</label>
-                        <select name="idMesa" id="sltMesa" data-native-menu="false">
-                            <option data-placeholder="true">Seleccionar</option>
+                        <select name="idMesa" id="sltMesa" data-native-menu="false" required>
+                            <option data-placeholder="true" value="">Seleccionar</option>
                             <?php foreach ($mesas as $mesa) { ?>
                             <option value="<?php echo $mesa["idMesa"] ?>"><?php echo $mesa["descripcion"]; ?></option>
                             <?php } ?>

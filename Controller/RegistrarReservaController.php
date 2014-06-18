@@ -52,6 +52,11 @@
                 $cliente = getClienteByIdUsuario($_SESSION["idUsuario"]);
                 $nombreCompleto = $cliente["apellidoPaterno"] . " " . $cliente["apellidoMaterno"] . ", " . $cliente["nombres"];
             }
+            elseif($_SESSION["rol"] == "administrador") {
+                $reserva =  getReservaByIdHoraIdMesa($hora["idHora"], $mesa["idMesa"]);
+                $cliente = getClienteByIdUsuario($reserva["idUsuario"]);
+                $nombreCompleto = $cliente["apellidoPaterno"] . " " . $cliente["apellidoMaterno"] . ", " . $cliente["nombres"];
+            }
         }
     } 
     
@@ -62,8 +67,22 @@
         $reserva["fechaHora"] = $_POST["fechaHora"];
         $reserva["nPersonas"] = $_POST["nPersonas"];
         if($id = registrarReserva($reserva))
-            header("Location: ../View/Reservaciones/index.php?rpta=correcto&id=" . $id);
+            header("Location: ../View/Reservaciones/listaReservasCliente.php?rpta=correcto&id=" . $id);
         else
-            header("Location: ../View/Reservaciones/index.php?rpta=incorrecto");  
+            header("Location: ../View/Reservaciones/listaReservasCliente.php?rpta=incorrecto");  
     }
+    
+    if($submit == "ListaCliente") {
+        $reservas = getReservaByIdUsuario($_SESSION["idUsuario"]);
+    }
+      
+    if($submit == "DetalleReservaCliente") {
+        echo "dsadd";
+        if(isset($_GET["idReserva"])) {
+            echo $_GET["idReserva"];
+            $reserva = getReserva($_GET["idReserva"]);
+            $cliente = getClienteByIdUsuario($reserva["idUsuario"]);
+            $nombreCompleto = $cliente["apellidoPaterno"] . " " . $cliente["apellidoMaterno"] . ", " . $cliente["nombres"];
+        }
+    } 
 ?>

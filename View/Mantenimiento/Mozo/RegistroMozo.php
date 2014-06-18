@@ -32,33 +32,39 @@
                     <?php } ?>
                     <div data-role="fieldcontain">
                         <label for="txtNombres">Nombres:</label>
-                        <input type="text" name="nombres" id="txtNombres" value="<?php if(is_array($mozo)) echo $mozo["nombres"]; ?>" />
+                        <input type="text" name="nombres" id="txtNombres" value="<?php if(is_array($mozo)) echo $mozo["nombres"]; ?>" required maxlength="50" />
                     </div>
                     <div data-role="fieldcontain">
                         <label for="txtApellidoPaterno">Apellido Paterno:</label>
-                        <input type="text" name="apellidoPaterno" id="txtApellidoPaterno" value="<?php if(is_array($mozo)) echo $mozo["apellidoPaterno"]; ?>" />
+                        <input type="text" name="apellidoPaterno" id="txtApellidoPaterno" value="<?php if(is_array($mozo)) echo $mozo["apellidoPaterno"]; ?>" required maxlength="40" />
                     </div>
                     <div data-role="fieldcontain">
                         <label for="txtApellidoMaterno">Apellido Materno:</label>
-                        <input type="text" name="apellidoMaterno" id="txtApellidoMaterno" value="<?php if(is_array($mozo)) echo $mozo["apellidoMaterno"]; ?>" />
+                        <input type="text" name="apellidoMaterno" id="txtApellidoMaterno" value="<?php if(is_array($mozo)) echo $mozo["apellidoMaterno"]; ?>" required maxlength="40"/>
                     </div>
                     <div data-role="fieldcontain">
                         <label for="txtTelefono">Teléfono:</label>
-                        <input type="text" name="telefono" id="txtTelefono" value="<?php if(is_array($mozo)) echo $mozo["telefono"]; ?>" />
+                        <input type="text" name="telefono" id="txtTelefono" value="<?php if(is_array($mozo)) echo $mozo["telefono"]; ?>" maxlength="10" />
                     </div>
                     <div data-role="fieldcontain">
                         <label for="txtaDireccion">Dirección:</label>	
-                        <textarea rows="8" name="direccion" id="txtaDireccion"><?php if(is_array($mozo)) echo $mozo["direccion"]; ?></textarea>
+                        <textarea rows="8" name="direccion" id="txtaDireccion" maxlength="60"><?php if(is_array($mozo)) echo $mozo["direccion"]; ?></textarea>
                     </div>
                     <div data-role="fieldcontain">
                         <label for="sltUsuario" class="select">Usuario:</label>
-                        <select name="idUsuario" id="sltUsuario" data-native-menu="false">
-                            <option data-placeholder="true">Seleccionar</option>
-                            <?php var_dump($usuarios);
-                            foreach ($usuarios as $usuario) { ?>
+                        <?php
+                        if(!is_array($usuarios)) { 
+                            echo "<input type='text' value='Registrar nuevo usuario antes de continuar' />";
+                        }
+                        else {
+                        ?>
+                        <select name="idUsuario" id="sltUsuario" data-native-menu="false" required>
+                            <option data-placeholder="true" value="">Seleccionar</option>
+                            <?php foreach ($usuarios as $usuario) { ?>
                             <option value="<?php echo $usuario["idUsuario"] ?>" <?php if(is_array($mozo)) if($mozo["idUsuario"] == $usuario["idUsuario"]) echo "selected" ?>><?php echo $usuario["username"]; ?></option>
                             <?php } ?>
                         </select>
+                        <?php } ?>
                     </div>
                     <div data-role="fieldcontain">
                         <?php

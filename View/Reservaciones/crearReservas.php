@@ -21,19 +21,29 @@
                 <h1>Crear Reservas</h1>
             </div>
             <div data-role="content">
-                <form action="../../Controller/RegistrarReservaController.php?submit=Crear" method="POST" data-ajax="false">
+                <form id="frmCrearReservas" action="../../Controller/RegistrarReservaController.php?submit=Crear" method="POST" data-ajax="false">
                     <div data-role="fieldcontain">
                         <label for="txtFechaUltimaReserva">Fecha última Reserva:</label>
                         <input type="text" name="fechaUltimaReserva" id="txtFechaUltimaReserva" value="<?php echo $fechaUltimaReserva; ?>" readonly />
                     </div>
                     <div data-role="fieldcontain">
                         <label for="dtCrearReservas">Crear reservas hasta:</label>
-                        <input type="date" name="fechaCrearReserva" id="txtCrearReserva" value="" />
+                        <input type="date" name="fechaCrearReserva" id="txtCrearReserva" value="" required/>
                     </div>
                     <div data-role="fieldcontain">
                         <input type="submit" name="submit" value="Crear" />
                     </div>
                 </form>
+                <script type="text/javascript">
+                   $("#frmCrearReservas").submit(function() {
+                        var fechaUltima = $("#txtFechaUltimaReserva").val();
+                        var fechaHasta = $("#txtCrearReserva").val();
+                        if(fechaUltima > fechaHasta) {
+                            alert("Seleccionar una fecha posterior");
+                            return false;
+                        }
+                    });
+                </script>
             </div>
             <div data-role="footer" data-fullscreen="true">
                 <h4>Copyright SIS-REST &copy; 2014</h4>

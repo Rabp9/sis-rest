@@ -38,17 +38,26 @@
                         <input id="txtFechaReserva" type="text" name="fechaReserva" value="<?php echo $hora["horaInicio"] . " - " .  $hora["horaFin"]; ?>" readonly/>
                         <input id="idHora" type="hidden" name="idHora" value="<?php echo $hora["idHora"]; ?>">
                     </div>    
+                    <?php if($_SESSION["rol"] == "cliente") { ?>
                     <div data-role="fieldcontain">
                         <label for="txtFechaActual">Fecha y Hora Actual: </label>         
                         <input id="txtFechaHora" type="text" name="fechaHora" value="<?php echo date("Y-m-d H:i:s"); ?>" readonly/>
-                    </div>
+                    </div>              
+                    <?php } ?> 	
                     <div data-role="fieldcontain">
                         <label for="nmbNPersonas">Número de Personas:</label> 	
+                        <?php if($_SESSION["rol"] == "cliente") { ?>
                         <input type="range" name="nPersonas" id="nmbNPersonas" step="1" min="1" max="20" data-popup-enabled="true"  value="1" />
+                        <?php } ?> 	
+                        <?php if($_SESSION["rol"] == "administrador") { ?>
+                        <input type="text" name="nPersonas" id="nmbNPersonas" value="<?php echo $reserva["nPersonas"]; ?>" readonly />
+                        <?php } ?>
                     </div>
+                    <?php if($_SESSION["rol"] == "cliente") { ?>
                     <div data-role="fieldcontain">
                         <input type="submit" name="submit" value="Registrar" data-ajax="false" />
                     </div>
+                    <?php } ?>
                 </form>
             </div>
             <div data-role="footer" data-fullscreen="true">

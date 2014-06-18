@@ -24,7 +24,7 @@
                     <?php if($_SESSION["rol"] == "administrador" || $_SESSION["rol"] == "jefecocina") { ?> 
                     <li>
                         <a href="reportePedidos.php">
-                            <img src="../../resources/img/icon-cliente.png">
+                            <img src="../../resources/img/icon-reporte-pedido.png">
                             Reporte Pedidos
                         </a>
                     </li>
@@ -32,7 +32,7 @@
                     <?php if($_SESSION["rol"] == "administrador") { ?> 
                     <li>
                         <a href="reporteConsumo.php">
-                            <img src="../../resources/img/icon-platos2.jpg">
+                            <img src="../../resources/img/icon-reporte-consumo.png">
                             Reporte Consumo
                         </a>
                     </li>

@@ -19,8 +19,8 @@
             $(document).ready(function() {
                 $.mobile.changePage( "#dialogo", { role: "dialog" } );
             });
-        </script>
-        <?php }?>
+        </script>   
+        <?php }?>     
     </head>
     <body>
         <div data-role="page" id="listaClientes" data-theme="a">

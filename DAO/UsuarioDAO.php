@@ -20,7 +20,7 @@
 
     function getUsuariosByRol($rol) {
         global $dbh;
-        $rs = $dbh->prepare("select * from Usuario where rol = :rol AND estado = 1");
+        $rs = $dbh->prepare("select u.idUsuario, u.username, u.password, u.rol,	u.estado, m.idMozo, c.idCliente from Usuario u left join Mozo m on m.idUsuario = u.idUsuario left join Cliente c on c.idUsuario = u.idUsuario where u.rol = :rol AND u.estado = 1 AND m.idMozo is null AND c.idCliente is null");
         $rs->bindParam(":rol", $rol);
         $rs->execute(); 
         while ($row = $rs->fetch()) {

@@ -9,6 +9,13 @@
         <link rel="stylesheet" type="text/css" href="resources/css/dashborad.css"/>
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+        <?php if(isset($_GET["rpta"])) { ?>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $.mobile.changePage( "#dialogo", { role: "dialog" } );
+            });
+        </script>
+        <?php }?>
     </head>
     <body>
         <div data-role="page" id="homePage" data-theme="a">
@@ -31,11 +38,41 @@
                     <div data-role="fieldcontain">
                         <input type="submit" name="submit" value="Ingresar" />
                     </div>
+                    <div data-role="fieldcontain">
+                        <a href="registrarUsuario.php" data-ajax="false"><button type="button">Registrar Usuario</button></a>
+                    </div>
                 </form>
             </div>
             <div data-role="footer">
                 <h4>Copyright SIS-REST &copy; 2014</h4>
             </div>
-        </div>
+        </div>    
+        
+        <div data-role="dialog" id="dialogo">
+            <div data-role="header">
+                <h1>Mensaje</h1>
+            </div>
+            <div data-role="content">
+                <?php if($_GET["rpta"] == "correcto") {?>
+                <p>Usuario registrado correctamente</p>
+                <p>Código Usuario: <?php echo $_GET["id"]; ?></p>
+                <?php }?>
+                <?php 
+                if($_GET["rpta"] == "incorrecto") {
+                    if($_GET["mensaje"] == "error") { 
+                ?>
+                    <p>No fue posible registrar el usuario</p>
+                <?php
+                    }
+                    else {
+                ?>
+                <p>Usuario o Contraseña incorrectos</p>
+                <?php
+                    }
+                }
+                ?>
+             
+            </div>
+        </div>​
     </body>
 </html>

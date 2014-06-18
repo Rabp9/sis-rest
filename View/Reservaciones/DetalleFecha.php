@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $submit = "Detalle";
     require_once '../../Controller/RegistrarReservaController.php';
 ?>
@@ -21,21 +22,58 @@
                 <h1>Detalle <?php echo $fecha; ?></h1>
             </div>
             <div data-role="content">
-                <ul data-role="listview" data-inset="true" data-divider-theme="a">
+                <ul id="ulDetalleReserva" data-role="listview" data-inset="true" data-divider-theme="a">
                     <li data-role="list-divider">11:00 am - 1:00 pm</li>
                     <?php foreach($mesas1 as $mesa1) {?>
-                    <li data-icon="<?php if($mesa1["reservado"] == "SI") echo "lock"; else echo "check"; ?>"><a href="confirmar.php?idMesa=<?php echo $mesa1["idMesa"]; ?>&fecha=<?php echo $fecha ?>&hora=11:00:00" data-ajax="false"><?php echo $mesa1["descripcion"]; ?></a></li>
+                    <li data-icon="<?php if($mesa1["reservado"] == "SI") echo "search"; else echo "check"; ?>">
+                        <a href="confirmar.php?idMesa=<?php echo $mesa1["idMesa"]; ?>&fecha=<?php echo $fecha ?>&hora=11:00:00" data-ajax="false">
+                            <?php echo $mesa1["descripcion"]; ?>
+                            <input class="hdnReservado" type="hidden" value="<?php echo $mesa1["reservado"]; ?>" />
+                        </a>
+                    </li>
                     <?php } ?>
                     <li data-role="list-divider">1:00 pm - 3:00 pm</li>
                     <?php foreach($mesas2 as $mesa2) {?>
-                    <li data-icon="<?php if($mesa2["reservado"] == "SI") echo "lock"; else echo "check"; ?>"><a href="confirmar.php?idMesa=<?php echo $mesa2["idMesa"]; ?>&fecha=<?php echo $fecha ?>&hora=13:00:00" data-ajax="false"><?php echo $mesa2["descripcion"]; ?></a></li>
+                    <li data-icon="<?php if($mesa2["reservado"] == "SI") echo "search"; else echo "check"; ?>">
+                        <a href="confirmar.php?idMesa=<?php echo $mesa2["idMesa"]; ?>&fecha=<?php echo $fecha ?>&hora=13:00:00" data-ajax="false">
+                            <?php echo $mesa2["descripcion"]; ?>
+                            <input class="hdnReservado" type="hidden" value="<?php echo $mesa2["reservado"]; ?>" />
+                        </a>
+                    </li>
                     <?php } ?>
                     <li data-role="list-divider">3:00 pm - 5:00 pm</li>
                     <?php foreach($mesas3 as $mesa3) {?>
-                    <li data-icon="<?php if($mesa3["reservado"] == "SI") echo "lock"; else echo "check"; ?>"><a href="confirmar.php?idMesa=<?php echo $mesa3["idMesa"]; ?>&fecha=<?php echo $fecha ?>&hora=15:00:00" data-ajax="false"><?php echo $mesa3["descripcion"]; ?></a></li>
+                    <li data-icon="<?php if($mesa3["reservado"] == "SI") echo "search"; else echo "check"; ?>">
+                        <a href="confirmar.php?idMesa=<?php echo $mesa3["idMesa"]; ?>&fecha=<?php echo $fecha ?>&hora=15:00:00" data-ajax="false">
+                            <?php echo $mesa3["descripcion"]; ?>
+                            <input class="hdnReservado" type="hidden" value="<?php echo $mesa3["reservado"]; ?>" />
+                        </a>
+                    </li>
                     <?php } ?>
                 </ul>
             </div>
+            <?php if($_SESSION["rol"] == "administrador") { ?>
+            <script type="text/javascript">
+                $("#ulDetalleReserva li a").click(function(e) {
+                    var reserva = $(this).parent().find(".hdnReservado").val();
+                    if(reserva == "NO") {
+                        alert("Reserva disponible");
+                        e.preventDefault();
+                    }
+                });
+            </script>
+            <?php } ?>
+            <?php if($_SESSION["rol"] == "cliente") { ?>
+            <script type="text/javascript">
+                $("#ulDetalleReserva li a").click(function(e) {
+                    var reserva = $(this).parent().find(".hdnReservado").val();
+                    if(reserva == "SI") {
+                        alert("Ya está reservado");
+                        e.preventDefault();
+                    }
+                });
+            </script>
+            <?php } ?>
             <div data-role="footer" data-fullscreen="true">
                 <h4>Copyright SIS-REST &copy; 2014</h4>
             </div>

@@ -33,7 +33,7 @@
                     <?php } ?>
                     <div data-role="fieldcontain">
                         <label for="txtDescripcion">Descripción:</label>
-                        <input type="text" name="descripcion" id="txtDescripcion" value="<?php if(is_array($mesa)) echo $mesa["descripcion"]; ?>" />
+                        <input type="text" name="descripcion" id="txtDescripcion" value="<?php if(is_array($mesa)) echo $mesa["descripcion"]; ?>" required maxlength="40" />
                     </div>
                     <div data-role="fieldcontain">
                         <?php

@@ -17,15 +17,26 @@
                 <h1>Reservaciones</h1>
             </div>
             <div data-role="content">
-                <form action="../../Controller/RegistrarReservaController.php?submit=Buscar" method="POST" data-ajax="false">
+                <form id="frmReservaciones" action="../../Controller/RegistrarReservaController.php?submit=Buscar" method="POST" data-ajax="false">
+                    <input type="hidden" id="hdnFechaActual" value="<?php echo date("Y-m-d"); ?>" />
                     <div data-role="fieldcontain">
                         <label for="dtFecha">Fecha:</label>
-                        <input type="date" name="fecha" id="txtFecha" value="" />
+                        <input type="date" name="fecha" id="txtFecha" value="" required />
                     </div>
                     <div data-role="fieldcontain">
                         <input type="submit" name="submit" value="Buscar" />
                     </div>
                 </form>
+                <script type="text/javascript">
+                   $("#frmReservaciones").submit(function() {
+                        var fechaActual = $("#hdnFechaActual").val();
+                        var fecha = $("#txtFecha").val();
+                        if(fechaActual > fecha) {
+                            alert("La fechan debe ser posterior a la fecha Actual: " + fechaActual);
+                            return false;
+                        }
+                    });
+                </script>
             </div>
             <div data-role="footer" data-fullscreen="true">
                 <h4>Copyright SIS-REST &copy; 2014</h4>

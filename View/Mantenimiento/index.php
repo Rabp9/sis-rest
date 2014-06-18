@@ -24,7 +24,7 @@
                     <?php if($_SESSION["rol"] == "administrador" || $_SESSION["rol"] == "mozo") { ?> 
                     <li>
                         <a href="Cliente/ListaCliente.php">
-                            <img src="../../resources/img/icon-cliente.jpg">
+                            <img src="../../resources/img/icon-cliente.png">
                             Cliente
                         </a>
                     </li>
@@ -32,7 +32,7 @@
                     <?php if($_SESSION["rol"] == "administrador") { ?> 
                     <li>
                         <a href="Plato/ListaPlato.php">
-                            <img src="../../resources/img/icon-platos2.jpg">
+                            <img src="../../resources/img/icon-platos.png">
                             Plato
                         </a>
                     </li>
@@ -40,7 +40,7 @@
                     <?php if($_SESSION["rol"] == "administrador") { ?> 
                     <li>
                         <a href="Mesa/ListaMesa.php">
-                            <img src="../../resources/img/icon-mesa2.png">
+                            <img src="../../resources/img/icon-mesa.png">
                             Mesa
                         </a>
                     </li>
@@ -48,7 +48,7 @@
                     <?php if($_SESSION["rol"] == "administrador") { ?> 
                     <li>
                         <a href="Lugar/ListaLugar.php">
-                            <img src="../../resources/img/lugar2.png">
+                            <img src="../../resources/img/icon-lugar.png">
                             Lugar Turístico
                         </a>
                     </li>
@@ -56,7 +56,7 @@
                     <?php if($_SESSION["rol"] == "administrador") { ?> 
                     <li>
                         <a href="Mozo/ListaMozo.php">
-                            <img src="../../resources/img/mozo2.png">
+                            <img src="../../resources/img/icon-mozo.png">
                             Mozo
                         </a>
                     </li>
@@ -64,7 +64,7 @@
                     <?php if($_SESSION["rol"] == "administrador") { ?> 
                     <li>
                         <a href="Usuario/ListaUsuario.php">
-                            <img src="../../resources/img/icon-cliente.png">
+                            <img src="../../resources/img/icon-usuario.png">
                             Usuario
                         </a>
                     </li>

@@ -23,7 +23,7 @@
                     <?php if($_SESSION["rol"] == "administrador" || $_SESSION["rol"] == "mozo") { ?> 
                     <li>
                         <a href="View/Mantenimiento/">
-                            <img src="resources/img/icon-mantenimiento3.png">
+                            <img src="resources/img/icon-mantenimiento.png">
                             Mantenimiento
                         </a>
                     </li>
@@ -31,7 +31,7 @@
                     <?php if($_SESSION["rol"] == "cliente" || $_SESSION["rol"] == "mozo" || $_SESSION["rol"] == "jefecocina") { ?> 
                     <li>
                         <a href="View/Pedidos/index.php">
-                            <img src="resources/img/icon-pedidos3.png">
+                            <img src="resources/img/icon-pedidos.png">
                             Pedidos
                         </a>
                     </li>
@@ -39,7 +39,7 @@
                     <?php if($_SESSION["rol"] == "cliente" || $_SESSION["rol"] == "administrador") { ?> 
                     <li>
                         <a href="View/Reservaciones/">
-                            <img src="resources/img/icon-reservaciones2.jpg">
+                            <img src="resources/img/icon-reservaciones.png">
                             Reservaciones
                         </a>
                     </li>
@@ -47,11 +47,17 @@
                     <?php if($_SESSION["rol"] == "administrador" || $_SESSION["rol"] == "jefecocina") { ?> 
                     <li>
                         <a href="View/Reporte/">
-                            <img src="resources/img/icon-reportes2.jpg">
+                            <img src="resources/img/icon-reportes.png">
                             Reportes
                         </a>
                     </li>
                     <?php } ?>
+                    <li>
+                        <a href="Controller/HomeController.php?submit=Cerrar" data-ajax="false">
+                            <img src="resources/img/icon-cerrar-sesion.png">
+                            Cerrar Sesión
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div data-role="footer">

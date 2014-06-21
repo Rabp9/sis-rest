@@ -33,7 +33,7 @@
                 <table data-role="table" class="ui-responsive" data-split-icon="delete">
                     <thead>
                         <tr>
-                            <th>Plato</th>
+                            <th>Producto</th>
                             <th>Precio</th>
                             <th>Cantidad</th>
                             <th>Importe</th>
@@ -49,11 +49,11 @@
                             foreach ($listaPedidos as $pedido) {
                         ?>
                         <tr>
-                            <td><?php echo $pedido["plato"]; ?></td>
+                            <td><?php echo $pedido["producto"]; ?></td>
                             <td><?php echo $pedido["precio"]; ?></td>
                             <td><?php echo $pedido["cantidad"]; ?></td>    
                             <td><?php echo $pedido["importe"]; ?></td>    
-                            <td><a href="../../Controller/RegistrarPedidoController.php?submit=Eliminar&idPlato=<?php echo $pedido["idPlato"]; ?>" data-role="button" data-icon="delete" data-iconpos="notext" data-ajax="false">Delete</a></td>
+                            <td><a href="../../Controller/RegistrarPedidoController.php?submit=Eliminar&idProducto=<?php echo $pedido["idProducto"]; ?>" data-role="button" data-icon="delete" data-iconpos="notext" data-ajax="false">Delete</a></td>
                         </tr>
                         <?php
                             }
@@ -61,7 +61,7 @@
                         ?>
                     </tbody>
                 </table>      
-                <a href="seleccionarPlato.php" data-ajax="false"><button>Agregar Plato</button></a>
+                <a href="seleccionarProducto.php" data-ajax="false"><button>Agregar Producto</button></a>
                 <a href="confirmar.php"><button>Finalizar Pedido</button></a>
             </div>
             <div data-role="footer" data-fullscreen="true">

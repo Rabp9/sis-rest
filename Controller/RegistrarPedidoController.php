@@ -6,7 +6,7 @@
         define('__ROOT__', dirname(dirname(__FILE__))); 
     require_once(__ROOT__.'/DAO/VwClienteDAO.php');
     require_once(__ROOT__.'/DAO/ClienteDAO.php');
-    require_once(__ROOT__.'/DAO/PlatoDAO.php');
+    require_once(__ROOT__.'/DAO/ProductoDAO.php');
     require_once(__ROOT__.'/DAO/MesaDAO.php');
     require_once(__ROOT__.'/DAO/MozoDAO.php');
     require_once(__ROOT__.'/DAO/UsuarioDAO.php');
@@ -22,24 +22,24 @@
     if($submit == "index") {
         if($_SESSION["rol"] == "cliente") {
             $cliente = getClienteByIdUsuario($_SESSION["idUsuario"]);
-            header("Location: ../Pedidos/seleccionarPlato.php?idCliente=" . $cliente["idCliente"]);
+            header("Location: ../Pedidos/seleccionarProducto.php?idCliente=" . $cliente["idCliente"]);
         }
         $clientes = getVwClientes();
     }
     
-    if($submit == "platos") {
+    if($submit == "productos") {
         if(isset($_GET["idCliente"]))
             $_SESSION["cliente"] = getVwCliente($_GET["idCliente"]);
-        $platos = getPlatosOrdenados();
+        $productos = getProductosOrdenados();
     }   
     
     if($submit == "pedido") {
-        if(isset($_GET["idPlato"])) {
-            $plato = getPlato($_GET["idPlato"]);
+        if(isset($_GET["idProducto"])) {
+            $producto = getProducto($_GET["idProducto"]);
             if(!isset($_SESSION["pedidos"])) {
-                $pedido["idPlato"] = $plato["idPlato"];
-                $pedido["plato"] = $plato["descripcion"];
-                $pedido["precio"] = $plato["precio"];
+                $pedido["idProducto"] = $producto["idProducto"];
+                $pedido["producto"] = $producto["descripcion"];
+                $pedido["precio"] = $producto["precio"];
                 $pedido["cantidad"] = $_GET["cantidad"];
                 $pedido["importe"] = $pedido["precio"] * $pedido["cantidad"];
                 $_SESSION["pedidos"][] = $pedido; 
@@ -48,7 +48,7 @@
                 $listaPedidos = $_SESSION["pedidos"];
                 $r = false;
                 foreach ($listaPedidos as $key => $pedido) {
-                    if($pedido["idPlato"] == $plato["idPlato"]) {
+                    if($pedido["idProducto"] == $producto["idProducto"]) {
                         $pedido["cantidad"] += $_GET["cantidad"];
                         $pedido["importe"] = $pedido["cantidad"] * $pedido["precio"];
                         $listaPedidos[$key] = $pedido;
@@ -57,9 +57,9 @@
                     }
                 }
                 if(!$r) {
-                    $pedido["idPlato"] = $plato["idPlato"];
-                    $pedido["plato"] = $plato["descripcion"];
-                    $pedido["precio"] = $plato["precio"];
+                    $pedido["idProducto"] = $producto["idProducto"];
+                    $pedido["producto"] = $producto["descripcion"];
+                    $pedido["precio"] = $producto["precio"];
                     $pedido["cantidad"] = $_GET["cantidad"];
                     $pedido["importe"] = $pedido["precio"] * $pedido["cantidad"];
                     $_SESSION["pedidos"][] = $pedido;
@@ -79,9 +79,9 @@
     
     if($submit == "Eliminar") {
         $listaPedidos = $_SESSION["pedidos"];
-        $idPlato = $_GET["idPlato"];
+        $idProducto = $_GET["idProducto"];
         foreach ($listaPedidos as $key => $pedido) {
-            if($pedido["idPlato"] == $idPlato) {
+            if($pedido["idProducto"] == $idProducto) {
                 unset($listaPedidos[$key]);
                 break;
             }

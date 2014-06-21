@@ -96,8 +96,8 @@
             $reporte->Cell(20, 5, "Detalle:", 0 , 0, 'B');
             
             $reporte->Ln(5);
-            $header = array(utf8_decode("idPlato"), utf8_decode("Descripción"), utf8_decode("Precio"), utf8_decode("Cantidad"), utf8_decode("Importe"));
-            $cols = array("idPlato", "plato", "precio", "cantidad", "importe");
+            $header = array(utf8_decode("idProducto"), utf8_decode("Descripción"), utf8_decode("Precio"), utf8_decode("Cantidad"), utf8_decode("Importe"));
+            $cols = array("idProducto", "producto", "precio", "cantidad", "importe");
             $w = array(20, 50, 30, 30, 30);
             $reporte->Table($header, $cols, $detallePedidos, $w);
             

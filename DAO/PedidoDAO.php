@@ -55,9 +55,9 @@
             $rs->execute();
             // Registrar detalle
             foreach ($detallePedidos as $detallePedido) {
-                $rs = $dbh->prepare("INSERT INTO DetallePedido(idPedido, idPlato, cantidad, importe, estado) VALUES(:idPedido, :idPlato, :cantidad, :importe, :estado)");
+                $rs = $dbh->prepare("INSERT INTO DetallePedido(idPedido, idProducto, cantidad, importe, estado) VALUES(:idPedido, :idProducto, :cantidad, :importe, :estado)");
                 $rs->bindParam(":idPedido", $idPedido);
-                $rs->bindParam(":idPlato", $detallePedido["idPlato"]);
+                $rs->bindParam(":idProducto", $detallePedido["idProducto"]);
                 $rs->bindParam(":cantidad", $detallePedido["cantidad"]);
                 $rs->bindParam(":importe", $detallePedido["importe"]);
                 $rs->bindParam(":estado", $estado); // activo 

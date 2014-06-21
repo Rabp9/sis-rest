@@ -39,7 +39,7 @@
                 <table data-role="table" class="ui-responsive" data-split-icon="delete">
                     <thead>
                         <tr>
-                            <th>Plato</th>
+                            <th>Producto</th>
                             <th>Precio</th>
                             <th>Cantidad</th>
                             <th>Importe</th>
@@ -48,13 +48,13 @@
                     <tbody>
                         <?php
                         if(!is_array($detallePedidos)) {
-                            echo "<td colspan='7'><center>No hay registrado ningún Plato</center></td></tr>";
+                            echo "<td colspan='7'><center>No hay registrado ningún Producto</center></td></tr>";
                         }
                         else {
                             foreach ($detallePedidos as $detallePedido) {
                         ?>
                         <tr>
-                            <td><?php echo $detallePedido["plato"]; ?></td>
+                            <td><?php echo $detallePedido["producto"]; ?></td>
                             <td><?php echo $detallePedido["precio"]; ?></td>
                             <td><?php echo $detallePedido["cantidad"]; ?></td>
                             <td><?php echo $detallePedido["importe"]; ?></td>

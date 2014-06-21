@@ -31,9 +31,9 @@
                     <?php } ?>
                     <?php if($_SESSION["rol"] == "administrador") { ?> 
                     <li>
-                        <a href="Plato/ListaPlato.php">
-                            <img src="../../resources/img/icon-platos.png">
-                            Plato
+                        <a href="Producto/ListaProducto.php">
+                            <img src="../../resources/img/icon-productos.png">
+                            Carta
                         </a>
                     </li>
                     <?php } ?>

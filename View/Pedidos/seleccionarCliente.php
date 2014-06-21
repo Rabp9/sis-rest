@@ -31,7 +31,7 @@
                         foreach ($clientes as $cliente) {
                     ?>
                     <li>
-                        <a href="seleccionarPlato.php?idCliente=<?php echo $cliente["idCliente"]; ?>" data-ajax="false"><?php echo $cliente["nombreCompleto"]; ?></a>
+                        <a href="seleccionarProducto.php?idCliente=<?php echo $cliente["idCliente"]; ?>" data-ajax="false"><?php echo $cliente["nombreCompleto"]; ?></a>
                     </li>
                     <?php
                         }

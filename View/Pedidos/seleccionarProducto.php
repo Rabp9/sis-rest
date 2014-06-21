@@ -8,7 +8,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="content-type" content="text/html;charset=UTF-8">
-        <title>SIS-REST - Seleccionar Producto</title>
+        <title>SIS-REST - Carta</title>
         <link rel="stylesheet" type="text/css" href="../../resources/css/los_patos.min.css" />
         <link rel="stylesheet" type="text/css" href="../../resources/css/dashborad.css" />
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile.structure-1.3.2.min.css" />
@@ -29,7 +29,7 @@
         <div data-role="page" id="seleccionarProductos" data-theme="a">
             <div data-role="header">
                 <a href="<?php if($_SESSION["rol"] == "mozo") echo "seleccionarCliente.php"; elseif($_SESSION["rol"] == "cliente") echo "index.php"; ?>" data-icon="back">Atrás</a>
-                <h1>Seleccionar Producto</h1>
+                <h1>Carta</h1>
             </div>
             <div data-role="content">
                 <div data-role="fieldcontain">

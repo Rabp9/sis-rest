@@ -15,6 +15,6 @@
         header("Location: ../home.php");
     }
     else {
-        header("Location: ../login.php?rpta=incorrecto");
+        header("Location: ../login.php?rpta=loginError");
     }
 ?>

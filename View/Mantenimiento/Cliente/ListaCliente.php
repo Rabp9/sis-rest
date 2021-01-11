@@ -14,13 +14,6 @@
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile.structure-1.3.2.min.css" />
         <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
-        <?php if(isset($_GET["rpta"])) { ?>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $.mobile.changePage( "#dialogo", { role: "dialog" } );
-            });
-        </script>   
-        <?php }?>     
     </head>
     <body>
         <div data-role="page" id="listaClientes" data-theme="a">
@@ -33,7 +26,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Nombre Completo</th>
+                            <th>Nombre</th>
                             <th>Teléfono</th>
                             <th>Dirección</th>
                             <th>Email</th>
@@ -62,7 +55,7 @@
                         ?>
                     </tbody>
                 </table>
-                <a href="RegistroCliente.php?accion=nuevo"><button>Nuevo Cliente</button></a>
+                <a style="text-decoration: none;" href="RegistroCliente.php?accion=nuevo"><button>Nuevo Cliente</button></a>
             </div>
             <div data-role="footer" data-fullscreen="true">
                 <h4>Copyright SIS-REST &copy; 2014</h4>
@@ -107,5 +100,12 @@
                 <?php } ?>
             </div>
         </div>​
+        <?php if(isset($_GET["rpta"])) { ?>
+        <script type="text/javascript">
+            $(document).on('pageinit', function() {
+                $.mobile.changePage( "#dialogo", { role: "dialog" } );
+            });
+        </script>
+        <?php }?>
     </body>
 </html>

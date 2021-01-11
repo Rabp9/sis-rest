@@ -9,18 +9,11 @@
         <link rel="stylesheet" type="text/css" href="resources/css/dashborad.css"/>
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
-        <?php if(isset($_GET["rpta"])) { ?>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $.mobile.changePage( "#dialogo", { role: "dialog" } );
-            });
-        </script>
-        <?php }?>
     </head>
     <body>
         <div data-role="page" id="homePage" data-theme="a">
             <div data-role="header">
-                <h1>Ingresar a SIS-REST</h1>
+                <h1>LOGIN</h1>
             </div>
             <div data-role="content">
                 <form action="Controller/LoguearController.php" method="post" data-ajax="false" data-add-back-btn="true" data-back-btn-text="Atrás" >
@@ -39,7 +32,7 @@
                         <input type="submit" name="submit" value="Ingresar" />
                     </div>
                     <div data-role="fieldcontain">
-                        <a href="registrarUsuario.php" data-ajax="false"><button type="button">Registrar Usuario</button></a>
+                        <a style="text-decoration: none;" href="registrarUsuario.php" data-ajax="false"><button type="button">Registrar Usuario</button></a>
                     </div>
                 </form>
             </div>
@@ -59,20 +52,25 @@
                 <?php }?>
                 <?php 
                 if($_GET["rpta"] == "incorrecto") {
-                    if($_GET["mensaje"] == "error") { 
                 ?>
                     <p>No fue posible registrar el usuario</p>
                 <?php
-                    }
-                    else {
-                ?>
+                }
+                if ($_GET["rpta"] == "loginError") {
+                ?>    
                 <p>Usuario o Contraseña incorrectos</p>
                 <?php
-                    }
                 }
                 ?>
              
             </div>
-        </div>​
+        </div>​        
+        <?php if(isset($_GET["rpta"])) { ?>
+        <script type="text/javascript">
+            $(document).on('pageinit', function() {
+                $.mobile.changePage( "#dialogo", { role: "dialog" } );
+            });
+        </script>
+        <?php }?>
     </body>
 </html>

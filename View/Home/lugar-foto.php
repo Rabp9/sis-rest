@@ -20,7 +20,7 @@
             </div>
             <div data-role="content">
                 <img src="../../resources/img/lugares/<?php echo $lugar["foto"]; ?>" alt="Foto" width="100%"/>
-                <p><?php echo $lugar["descripcion"]; ?></p>
+                <p style="padding: 0px 10px; text-align: justify;"><?php echo $lugar["descripcion"]; ?></p>
             </div>
             <div data-role="footer" data-position="fixed">
                 <h4>Copyright Los Patos &copy; 2014</h4>

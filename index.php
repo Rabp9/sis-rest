@@ -13,7 +13,7 @@
     <body>
         <div data-role="page" id="homePage" data-theme="a">
             <div data-role="header">
-                <h1>Restaurante Los Patos</h1>
+                <h1>Los Patos</h1>
             </div>
             <div data-role="content">  
                 <figure id="topimg">
@@ -23,7 +23,7 @@
                     Bienvenidos al Restaurante Los Patos. La Calidad y El Buen Servicio en un Ambiente Campestre
                 </p>
                 <ul data-role="listview" data-inset="true">
-                    <li><a href="View/Home/encuentranos.html">Encuéntranos</a></li>
+                    <li><a href="View/Home/ubicanos.html">Ubícanos</a></li>
                     <li><a href="View/Home/carta.php">Nuestra Carta</a></li>
                     <li><a href="View/Home/lugares.php">Lugares Turísticos</a></li>
                     <li><a href="View/Home/contactanos.php">Contáctanos</a></li>

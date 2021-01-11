@@ -1,6 +1,9 @@
 <?php
     require_once('../../Controller/HomeController.php');
     $productos = getProductosOrdenados();
+    $tipos = array_unique(array_map(function($producto) {
+        return $producto["tipo"];
+    }, $productos));
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,7 +20,7 @@
     <body>
         <div data-role="page" id="nuestrosProductos" data-theme="a" data-add-back-btn="true" data-back-btn-text="Atrás" >
             <div data-role="header">
-                <h1>Nuestros Productos</h1>
+                <h1>Nuestra Carta</h1>
             </div>
             <div data-role="content">
                 <ul data-role="listview" data-inset="true" data-divider-theme="a">
@@ -26,12 +29,12 @@
                         echo "Ningún producto registrado en el sistema";
                     }
                     else {
-                        $tipo = "Entrada";
+                        foreach ($tipos as $tipo) {
                     ?>
                     <li data-role="list-divider"><?php echo $tipo; ?></li>
                     <?php
-                        foreach ($productos as $producto) {
-                            if($producto["tipo"] == $tipo) {
+                            foreach ($productos as $producto) {
+                                if($producto["tipo"] == $tipo) {
                     ?>
                     <li>
                         <a href="carta-foto.php?idProducto=<?php echo $producto["idProducto"]; ?>">
@@ -41,125 +44,7 @@
                         </a>
                     </li>
                     <?php
-                            }
-                        }        
-                        $tipo = "Criollo";
-                    ?>
-                    <li data-role="list-divider"><?php echo $tipo; ?></li>
-                    <?php
-                        foreach ($productos as $producto) {
-                            if($producto["tipo"] == $tipo) {
-                    ?>
-                    <li>
-                        <a href="carta-foto.php?idProducto=<?php echo $producto["idProducto"]; ?>">
-                            <img src="../../resources/img/productos/<?php echo $producto["foto"];?>">
-                            <?php echo $producto["descripcion"]; ?>
-                            <span class="ui-li-count"><?php echo $producto["precio"]; ?></span>
-                        </a>
-                    </li>
-                    <?php
-                            }
-                        }               
-                        $tipo = "Grill";
-                    ?>
-                    <li data-role="list-divider"><?php echo $tipo; ?></li>
-                    <?php
-                        foreach ($productos as $producto) {
-                            if($producto["tipo"] == $tipo) {
-                    ?>
-                    <li>
-                        <a href="carta-foto.php?idProducto=<?php echo $producto["idProducto"]; ?>">
-                            <img src="../../resources/img/productos/<?php echo $producto["foto"];?>">
-                            <?php echo $producto["descripcion"]; ?>
-                            <span class="ui-li-count"><?php echo $producto["precio"]; ?></span>
-                        </a>
-                    </li>
-                    <?php
-                            }
-                        }
-                        $tipo = "Pescados y Mariscos";
-                    ?>
-                    <li data-role="list-divider"><?php echo $tipo; ?></li>
-                    <?php
-                        foreach ($productos as $producto) {
-                            if($producto["tipo"] == $tipo) {
-                    ?>
-                    <li>
-                        <a href="carta-foto.php?idProducto=<?php echo $producto["idProducto"]; ?>">
-                            <img src="../../resources/img/productos/<?php echo $producto["foto"];?>">
-                            <?php echo $producto["descripcion"]; ?>
-                            <span class="ui-li-count"><?php echo $producto["precio"]; ?></span>
-                        </a>
-                    </li>
-                    <?php
-                            }
-                        }                        
-                        $tipo = "Guarniciones Adicionales";
-                    ?>
-                    <li data-role="list-divider"><?php echo $tipo; ?></li>
-                    <?php
-                        foreach ($productos as $producto) {
-                            if($producto["tipo"] == $tipo) {
-                    ?>
-                    <li>
-                        <a href="carta-foto.php?idProducto=<?php echo $producto["idProducto"]; ?>">
-                            <img src="../../resources/img/productos/<?php echo $producto["foto"];?>">
-                            <?php echo $producto["descripcion"]; ?>
-                            <span class="ui-li-count"><?php echo $producto["precio"]; ?></span>
-                        </a>
-                    </li>
-                    <?php
-                            }
-                        }                     
-                        $tipo = "Piqueo";
-                    ?>
-                    <li data-role="list-divider"><?php echo $tipo; ?></li>
-                    <?php
-                        foreach ($productos as $producto) {
-                            if($producto["tipo"] == $tipo) {
-                    ?>
-                    <li>
-                        <a href="carta-foto.php?idProducto=<?php echo $producto["idProducto"]; ?>">
-                            <img src="../../resources/img/productos/<?php echo $producto["foto"];?>">
-                            <?php echo $producto["descripcion"]; ?>
-                            <span class="ui-li-count"><?php echo $producto["precio"]; ?></span>
-                        </a>
-                    </li>
-                    <?php
-                            } 
-                        }                     
-                        $tipo = "Bebida Fria";
-                    ?>
-                    <li data-role="list-divider"><?php echo $tipo; ?></li>
-                    <?php
-                        foreach ($productos as $producto) {
-                            if($producto["tipo"] == $tipo) {
-                    ?>
-                    <li>
-                        <a href="carta-foto.php?idProducto=<?php echo $producto["idProducto"]; ?>">
-                            <img src="../../resources/img/productos/<?php echo $producto["foto"];?>">
-                            <?php echo $producto["descripcion"]; ?>
-                            <span class="ui-li-count"><?php echo $producto["precio"]; ?></span>
-                        </a>
-                    </li>
-                    <?php
-                            }
-                        }                     
-                        $tipo = "Bebida Caliente";
-                    ?>
-                    <li data-role="list-divider"><?php echo $tipo; ?></li>
-                    <?php
-                        foreach ($productos as $producto) {
-                            if($producto["tipo"] == $tipo) {
-                    ?>
-                    <li>
-                        <a href="carta-foto.php?idProducto=<?php echo $producto["idProducto"]; ?>">
-                            <img src="../../resources/img/productos/<?php echo $producto["foto"];?>">
-                            <?php echo $producto["descripcion"]; ?>
-                            <span class="ui-li-count"><?php echo $producto["precio"]; ?></span>
-                        </a>
-                    </li>
-                    <?php
+                                }
                             }
                         }
                     }

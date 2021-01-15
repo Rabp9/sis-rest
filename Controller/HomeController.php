@@ -20,7 +20,7 @@
             $usuario["password"] = $_POST["password"];
             $usuario["rol"] = "cliente";
             if($idUsuario = registrarNuevoUsuario($usuario))
-                header("Location: ../login.php?rpta=incorrecto&mensaje=error");
+                header("Location: ../registrarUsuario.php?rpta=incorrecto&mensaje=error");
             
             $cliente["nombres"] = $_POST["nombres"];
             $cliente["apellidoPaterno"] = $_POST["apellidoPaterno"];
@@ -31,9 +31,9 @@
             $cliente["idUsuario"] = $idUsuario;
             
             if($id = registrarNuevoCliente($cliente))
-                header("Location: ../login.php?rpta=correcto&id=" . $id);
+                header("Location: ../registrarUsuario.php?rpta=correcto&id=" . $id);
             else
-                header("Location: ../login.php?rpta=incorrecto&mensaje=error");
+                header("Location: ../registrarUsuario.php?rpta=incorrecto&mensaje=error");
         }
     }
     

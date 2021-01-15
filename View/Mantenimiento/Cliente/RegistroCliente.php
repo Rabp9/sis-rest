@@ -69,7 +69,7 @@
                     </div>
                     <div data-role="fieldcontain">
                         <?php
-                            if(is_array($cliente)) $opcion = "Modificar";
+                            if (is_array($cliente)) $opcion = "Modificar";
                             else $opcion = "Registrar";
                         ?>
                         <input type="submit" name="submit" value="<?php echo $opcion; ?>" />
@@ -80,5 +80,24 @@
                 <h4>Copyright SIS-REST &copy; 2014</h4>
             </div>
         </div>
+        
+        <?php if(isset($_GET["rpta"]) === "correcto") { ?>
+        <div data-role="dialog" id="dialogo" data-close-btn="none">
+            <div data-role="header">
+                <h1>Mensaje</h1>
+            </div>
+            <div data-role="content">
+                Todo bien
+                <a href="ListaClientes.php" data-role="button" data-ajax="false" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-a"><span class="ui-btn-inner"><span class="ui-btn-text">Cerrar</span></span></a>
+            </div>
+        </div>​
+        <?php } ?>
+        <?php if(isset($_GET["rpta"])) { ?>
+        <script type="text/javascript">
+            $(document).on('pageinit', function() {
+                $.mobile.changePage( "#dialogo", { role: "dialog" } );
+            });
+        </script>
+        <?php }?>
     </body>
 </html>

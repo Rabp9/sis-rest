@@ -40,32 +40,18 @@
                 <h4>Copyright SIS-REST &copy; 2014</h4>
             </div>
         </div>    
-        
-        <div data-role="dialog" id="dialogo">
+        <?php
+        if ($_GET["rpta"] == "loginError") {
+        ?>
+        <div data-role="dialog" id="dialogo" data-close-btn="none">
             <div data-role="header">
                 <h1>Mensaje</h1>
             </div>
             <div data-role="content">
-                <?php if($_GET["rpta"] == "correcto") {?>
-                <p>Usuario registrado correctamente</p>
-                <p>Código Usuario: <?php echo $_GET["id"]; ?></p>
-                <?php }?>
-                <?php 
-                if($_GET["rpta"] == "incorrecto") {
-                ?>
-                    <p>No fue posible registrar el usuario</p>
-                <?php
-                }
-                if ($_GET["rpta"] == "loginError") {
-                ?>    
                 <p>Usuario o Contraseña incorrectos</p>
-                <?php
-                }
-                ?>
-             
+                <a href="login.php" data-role="button" data-ajax="false" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-a"><span class="ui-btn-inner"><span class="ui-btn-text">Cerrar</span></span></a>
             </div>
         </div>​        
-        <?php if(isset($_GET["rpta"])) { ?>
         <script type="text/javascript">
             $(document).on('pageinit', function() {
                 $.mobile.changePage( "#dialogo", { role: "dialog" } );

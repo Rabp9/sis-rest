@@ -22,7 +22,9 @@
                 <h1>Lista Clientes</h1>
             </div>
             <div data-role="content">
-                <table data-role="table" class="ui-responsive" data-split-icon="delete">
+                <div>ERROR O SUCCESS</div>
+                <a style="text-decoration: none;" href="RegistroCliente.php?accion=nuevo"><button>Nuevo Cliente</button></a>
+                <table data-role="table" class="ui-responsive table-stroke" data-mode="reflow" data-split-icon="delete">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -62,50 +64,5 @@
             </div>
         </div>
         
-        <div data-role="dialog" id="dialogo">
-            <div data-role="header">
-                <h1>Mensaje</h1>
-            </div>
-            <div data-role="content">
-                <?php if($_GET["mensaje"] == "nuevo") { ?>
-                    <?php if($_GET["rpta"] == "correcto") {?>
-                    <p>Cliente Registrado correctamente</p>
-                    <p>Código Cliente: <?php echo $_GET["id"]; ?></p>
-                    <?php }?>
-                    <?php if($_GET["rpta"] == "incorrecto") {?>
-                    <p>No fue posible registrar al cliente</p>
-                    <?php } ?>
-                <?php } ?>
-                
-                <?php if($_GET["mensaje"] == "editar") { ?>
-                    <?php if($_GET["rpta"] == "correcto") {?>
-                    <p>Cliente Modificado correctamente</p>
-                    <p>Código Cliente: <?php echo $_GET["id"]; ?></p>
-                    <?php }?>
-                    <?php if($_GET["rpta"] == "incorrecto") {?>
-                    <p>No fue posible modificar al cliente</p>
-                    <p>Código Cliente: <?php echo $_GET["id"]; ?></p>
-                    <?php } ?>
-                <?php } ?>
-                
-                <?php if($_GET["mensaje"] == "eliminar") { ?>
-                    <?php if($_GET["rpta"] == "correcto") {?>
-                    <p>Cliente Eliminado correctamente</p>
-                    <p>Código Cliente: <?php echo $_GET["id"]; ?></p>
-                    <?php }?>
-                    <?php if($_GET["rpta"] == "incorrecto") {?>
-                    <p>No fue posible eliminar al cliente</p>
-                    <p>Código Cliente: <?php echo $_GET["id"]; ?></p>
-                    <?php } ?>
-                <?php } ?>
-            </div>
-        </div>​
-        <?php if(isset($_GET["rpta"])) { ?>
-        <script type="text/javascript">
-            $(document).on('pageinit', function() {
-                $.mobile.changePage( "#dialogo", { role: "dialog" } );
-            });
-        </script>
-        <?php }?>
     </body>
 </html>
